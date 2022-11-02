@@ -1,5 +1,0 @@
-C:\Users\fbelh\source\repos\MaVideotheque\Database3\bin\Debug\Database3.dacpac
-C:\Users\fbelh\source\repos\MaVideotheque\Database3\bin\Debug\Database3.dll
-C:\Users\fbelh\source\repos\MaVideotheque\Database3\bin\Debug\Database3.pdb
-C:\Users\fbelh\source\repos\MaVideotheque\Database3\obj\Debug\Database3.dll
-C:\Users\fbelh\source\repos\MaVideotheque\Database3\obj\Debug\Database3.pdb
