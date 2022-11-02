@@ -1,0 +1,36 @@
+﻿** Met en surbrillance
+     Tables à reconstruire
+       Aucun
+     Index ordonnés en clusters à supprimer
+       Aucun
+     Index ordonnés en clusters à créer.
+       Aucun
+     Problèmes de données possibles
+       Aucun
+
+** Actions de l'utilisateur
+     Créer
+       [dbo].[Acteurs] (Table)
+       [dbo].[Classifications] (Table)
+       [dbo].[Clients] (Table)
+       [dbo].[Films] (Table)
+       [dbo].[Genres] (Table)
+       [dbo].[Langues] (Table)
+       [dbo].[Locations] (Table)
+       [dbo].[Realisateurs] (Table)
+       [dbo].[Roles] (Table)
+       [dbo].[Sous_titrages] (Table)
+       [dbo].[Voix] (Table)
+       [dbo].[ForeignKeyConstraint11] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint10] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint1] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint2] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint3] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint8] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint9] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint6] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint7] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint4] (Clé étrangère)
+       [dbo].[ForeignKeyConstraint5] (Clé étrangère)
+
+** Actions de support

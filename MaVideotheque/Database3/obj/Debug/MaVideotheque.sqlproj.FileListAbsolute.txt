@@ -1,0 +1,11 @@
+C:\Users\fbelh\source\repos\MaVideotheque\Database3\bin\Debug\MaVideotheque.dacpac
+C:\Users\fbelh\source\repos\MaVideotheque\Database3\bin\Debug\MaVideotheque.dll
+C:\Users\fbelh\source\repos\MaVideotheque\Database3\bin\Debug\MaVideotheque.pdb
+C:\Users\fbelh\source\repos\MaVideotheque\Database3\obj\Debug\MaVideotheque.dll
+C:\Users\fbelh\source\repos\MaVideotheque\Database3\obj\Debug\MaVideotheque.pdb
+D:\Users\basti\Desktop\MIASHS\M2\Videotheque\MaVideotheque\Database3\obj\Debug\MaVideotheque.dll
+D:\Users\basti\Desktop\MIASHS\M2\Videotheque\MaVideotheque\Database3\obj\Debug\MaVideotheque.pdb
+D:\Users\basti\Desktop\MIASHS\M2\Videotheque\MaVideotheque\Database3\bin\Debug\MaVideotheque.dacpac
+D:\Users\basti\Desktop\MIASHS\M2\Videotheque\MaVideotheque\Database3\bin\Debug\MaVideotheque.dll
+D:\Users\basti\Desktop\MIASHS\M2\Videotheque\MaVideotheque\Database3\bin\Debug\MaVideotheque.pdb
+D:\Users\basti\Desktop\MIASHS\M2\Videotheque\MaVideotheque\Database3\obj\Debug\MaVideotheque.sqlproj.AssemblyReference.cache

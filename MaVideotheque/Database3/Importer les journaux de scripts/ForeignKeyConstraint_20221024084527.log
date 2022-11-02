@@ -1,0 +1,12 @@
+24/10/2022 10:45:27	Ce journal contient des informations sur l'importation du script 'ForeignKeyConstraint1.sql' dans le projet 'Database3' sur l'ordinateur 'DESKTOP-VBKEOUD' par l'utilisateur 'fbelh.
+24/10/2022 10:45:27	Début de l'importation du fichier : C:\Users\fbelh\AppData\Local\Temp\tmp851C.tmp 
+24/10/2022 10:45:27	Nom de fichier C:\Users\fbelh\AppData\Local\Temp\tmp851C.tmp (taille : 3592)
+24/10/2022 10:45:27	Analyse du script d'importation
+24/10/2022 10:45:27	Nombre total de lots dans le script : 22
+24/10/2022 10:45:27	Nombre total d'instructions dans le script : 22
+24/10/2022 10:45:27	Le script a été correctement importé dans le projet.
+24/10/2022 10:45:27	Analyse des objets de schéma...
+24/10/2022 10:45:27	Analyse du projet à la recherche des éléments en double
+24/10/2022 10:45:27	Fin du traitement des éléments en double
+24/10/2022 10:45:28	Un résumé de l'opération d'importation a été enregistré à l'emplacement suivant : C:\Users\fbelh\source\repos\MaVideotheque\Database3\Importer les journaux de scripts\ForeignKeyConstraint_20221024084527.log.
+24/10/2022 10:45:28	Cliquez sur Terminer pour continuer...
