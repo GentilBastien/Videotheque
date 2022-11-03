@@ -23,7 +23,7 @@ namespace MaVideotheque
         public MainWindow()
         {
             InitializeComponent();
-            //test coAmmentaire siu2231Zzajnazdjnczajdcnjzndcp
+            //ça a bien marché.
         }
     }
 }
