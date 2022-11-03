@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Acteurs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Classifications">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_film" Type="bigint" Nullable="false" />
+    <Property Name="id_genre" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="prenom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="mail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="telephone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="date_naissance" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Films">
+    <Key>
+      <PropertyRef Name="code_barre" />
+    </Key>
+    <Property Name="code_barre" Type="bigint" Nullable="false" />
+    <Property Name="realisateur" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="titre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="synopsis" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="annee" Type="int" />
+    <Property Name="duree" Type="int" />
+    <Property Name="image" Type="nvarchar(max)" />
+    <Property Name="stock_total" Type="int" Nullable="false" />
+    <Property Name="exemplaires_loues" Type="int" Nullable="false" />
+    <Property Name="commandes" Type="int" Nullable="false" />
+    <Property Name="prix" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Langues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="langue" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_client" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_film" Type="bigint" Nullable="false" />
+    <Property Name="rendu" Type="bit" Nullable="false" />
+    <Property Name="date_debut" Type="date" Nullable="false" />
+    <Property Name="date_fin" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Realisateurs">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="nom" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_film" Type="bigint" Nullable="false" />
+    <Property Name="id_acteur" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sous_titrages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_film" Type="bigint" Nullable="false" />
+    <Property Name="id_langue" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Voix">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="id_film" Type="bigint" Nullable="false" />
+    <Property Name="id_langue" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <Association Name="FKC_classifications_films">
+    <End Role="Films" Type="Self.Films" Multiplicity="1" />
+    <End Role="Classifications" Type="Self.Classifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Films">
+        <PropertyRef Name="code_barre" />
+      </Principal>
+      <Dependent Role="Classifications">
+        <PropertyRef Name="id_film" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_classifications_genres">
+    <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+    <End Role="Classifications" Type="Self.Classifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Classifications">
+        <PropertyRef Name="id_genre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_films_realisateurs">
+    <End Role="Realisateurs" Type="Self.Realisateurs" Multiplicity="1" />
+    <End Role="Films" Type="Self.Films" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Realisateurs">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Films">
+        <PropertyRef Name="realisateur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_locations_clients">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Locations">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_locations_films">
+    <End Role="Films" Type="Self.Films" Multiplicity="1" />
+    <End Role="Locations" Type="Self.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Films">
+        <PropertyRef Name="code_barre" />
+      </Principal>
+      <Dependent Role="Locations">
+        <PropertyRef Name="id_film" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_roles_acteurs">
+    <End Role="Acteurs" Type="Self.Acteurs" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Acteurs">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="id_acteur" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_roles_films">
+    <End Role="Films" Type="Self.Films" Multiplicity="1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Films">
+        <PropertyRef Name="code_barre" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="id_film" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_sous_titrages_films">
+    <End Role="Films" Type="Self.Films" Multiplicity="1" />
+    <End Role="Sous_titrages" Type="Self.Sous_titrages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Films">
+        <PropertyRef Name="code_barre" />
+      </Principal>
+      <Dependent Role="Sous_titrages">
+        <PropertyRef Name="id_film" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_sous_titrages_langues">
+    <End Role="Langues" Type="Self.Langues" Multiplicity="1" />
+    <End Role="Sous_titrages" Type="Self.Sous_titrages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Langues">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Sous_titrages">
+        <PropertyRef Name="id_langue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_voix_films">
+    <End Role="Films" Type="Self.Films" Multiplicity="1" />
+    <End Role="Voix" Type="Self.Voix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Films">
+        <PropertyRef Name="code_barre" />
+      </Principal>
+      <Dependent Role="Voix">
+        <PropertyRef Name="id_film" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKC_voix_langues">
+    <End Role="Langues" Type="Self.Langues" Multiplicity="1" />
+    <End Role="Voix" Type="Self.Voix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Langues">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Voix">
+        <PropertyRef Name="id_langue" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="Acteurs" EntityType="Self.Acteurs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Classifications" EntityType="Self.Classifications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Films" EntityType="Self.Films" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Langues" EntityType="Self.Langues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Realisateurs" EntityType="Self.Realisateurs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sous_titrages" EntityType="Self.Sous_titrages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Voix" EntityType="Self.Voix" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FKC_classifications_films" Association="Self.FKC_classifications_films">
+      <End Role="Films" EntitySet="Films" />
+      <End Role="Classifications" EntitySet="Classifications" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_classifications_genres" Association="Self.FKC_classifications_genres">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Classifications" EntitySet="Classifications" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_films_realisateurs" Association="Self.FKC_films_realisateurs">
+      <End Role="Realisateurs" EntitySet="Realisateurs" />
+      <End Role="Films" EntitySet="Films" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_locations_clients" Association="Self.FKC_locations_clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Locations" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_locations_films" Association="Self.FKC_locations_films">
+      <End Role="Films" EntitySet="Films" />
+      <End Role="Locations" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_roles_acteurs" Association="Self.FKC_roles_acteurs">
+      <End Role="Acteurs" EntitySet="Acteurs" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_roles_films" Association="Self.FKC_roles_films">
+      <End Role="Films" EntitySet="Films" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_sous_titrages_films" Association="Self.FKC_sous_titrages_films">
+      <End Role="Films" EntitySet="Films" />
+      <End Role="Sous_titrages" EntitySet="Sous_titrages" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_sous_titrages_langues" Association="Self.FKC_sous_titrages_langues">
+      <End Role="Langues" EntitySet="Langues" />
+      <End Role="Sous_titrages" EntitySet="Sous_titrages" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_voix_films" Association="Self.FKC_voix_films">
+      <End Role="Films" EntitySet="Films" />
+      <End Role="Voix" EntitySet="Voix" />
+    </AssociationSet>
+    <AssociationSet Name="FKC_voix_langues" Association="Self.FKC_voix_langues">
+      <End Role="Langues" EntitySet="Langues" />
+      <End Role="Voix" EntitySet="Voix" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

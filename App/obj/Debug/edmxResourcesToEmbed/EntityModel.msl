@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+    <EntitySetMapping Name="Acteurs">
+      <EntityTypeMapping TypeName="DatabaseModel.Acteur">
+        <MappingFragment StoreEntitySet="Acteurs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Classifications">
+      <EntityTypeMapping TypeName="DatabaseModel.Classification">
+        <MappingFragment StoreEntitySet="Classifications">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id_genre" ColumnName="id_genre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="DatabaseModel.Client">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="date_naissance" ColumnName="date_naissance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Films">
+      <EntityTypeMapping TypeName="DatabaseModel.Film">
+        <MappingFragment StoreEntitySet="Films">
+          <ScalarProperty Name="code_barre" ColumnName="code_barre" />
+          <ScalarProperty Name="realisateur" ColumnName="realisateur" />
+          <ScalarProperty Name="titre" ColumnName="titre" />
+          <ScalarProperty Name="synopsis" ColumnName="synopsis" />
+          <ScalarProperty Name="annee" ColumnName="annee" />
+          <ScalarProperty Name="duree" ColumnName="duree" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="stock_total" ColumnName="stock_total" />
+          <ScalarProperty Name="exemplaires_loues" ColumnName="exemplaires_loues" />
+          <ScalarProperty Name="commandes" ColumnName="commandes" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="DatabaseModel.Genre">
+        <MappingFragment StoreEntitySet="Genres">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Langues">
+      <EntityTypeMapping TypeName="DatabaseModel.Langue">
+        <MappingFragment StoreEntitySet="Langues">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="langue1" ColumnName="langue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="DatabaseModel.Location">
+        <MappingFragment StoreEntitySet="Locations">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="rendu" ColumnName="rendu" />
+          <ScalarProperty Name="date_debut" ColumnName="date_debut" />
+          <ScalarProperty Name="date_fin" ColumnName="date_fin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Realisateurs">
+      <EntityTypeMapping TypeName="DatabaseModel.Realisateur">
+        <MappingFragment StoreEntitySet="Realisateurs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="DatabaseModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id_acteur" ColumnName="id_acteur" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sous_titrages">
+      <EntityTypeMapping TypeName="DatabaseModel.Sous_titrages">
+        <MappingFragment StoreEntitySet="Sous_titrages">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id_langue" ColumnName="id_langue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Voixes">
+      <EntityTypeMapping TypeName="DatabaseModel.Voix">
+        <MappingFragment StoreEntitySet="Voix">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_film" ColumnName="id_film" />
+          <ScalarProperty Name="id_langue" ColumnName="id_langue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
