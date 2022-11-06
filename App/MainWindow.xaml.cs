@@ -25,6 +25,7 @@ namespace MaVideotheque
         {
             BrushGreen = new SolidColorBrush(Color.FromRgb(101, 255, 107));
             InitializeComponent();
+            //ça a bien marché.
         }
 
         private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
