@@ -208,6 +208,15 @@
       <DependentUpon>EntityModel.edmx</DependentUpon>
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="img\add.png" />
+    <Resource Include="img\clients.png" />
+    <Resource Include="img\clients_selected.png" />
+    <Resource Include="img\films.png" />
+    <Resource Include="img\films_selected.png" />
+    <Resource Include="img\home.png" />
+    <Resource Include="img\home_selected.png" />
+    <Resource Include="img\locations.png" />
+    <Resource Include="img\locations_selected.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">

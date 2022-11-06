@@ -1,0 +1,15 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "tâche-img",
+      "appliesTo": "App/img/",
+      "type": "launch"
+    },
+    {
+      "taskLabel": "tâche-add",
+      "appliesTo": "App/img/add.png",
+      "type": "launch"
+    }
+  ]
+}

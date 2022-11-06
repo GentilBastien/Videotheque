@@ -5,8 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MaVideotheque"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Ma Vidéothèque" Height="900" Width="1600"
+        WindowStartupLocation="CenterScreen">
+
+    <TabControl 
+        TabStripPlacement="Left" 
+        FontFamily="Roboto" 
+        SelectionChanged="TabControl_SelectionChanged" 
+        HorizontalContentAlignment="Left">
+
+
+        <!--ACCUEIL-->
+        <TabItem x:Name="ItemAccueil" Width="180" >
+            <TabItem.Header>
+                <DockPanel>
+                    <Image x:Name="ItemAccueilImage" Width="40" Source="img\home.png" />
+                    <Label x:Name="ItemAccueilLabel" VerticalAlignment="Center" Content="Accueil" FontSize="16" FontWeight="Bold"/>
+                </DockPanel>
+            </TabItem.Header>
+            <Label Content="contenu de accueil" />
+        </TabItem>
+
+
+
+
+        <!--CLIENTS-->
+        <TabItem x:Name="ItemClients">
+            <TabItem.Header>
+                <DockPanel>
+                    <Image x:Name="ItemClientsImage" Width="40" Source="img\clients.png" />
+                    <Label x:Name="ItemClientsLabel" VerticalAlignment="Center" Content="Clients" FontSize="16" FontWeight="Bold" />
+                </DockPanel>
+            </TabItem.Header>
+            <Label Content="contenu de clients" />
+        </TabItem>
+
+
+
+
+        <!--FILMS-->
+        <TabItem x:Name="ItemFilms">
+            <TabItem.Header>
+                <DockPanel>
+                    <Image x:Name="ItemFilmsImage" Width="40" Source="img\films.png" />
+                    <Label x:Name="ItemFilmsLabel" VerticalAlignment="Center" Content="Films" FontSize="16" FontWeight="Bold" />
+                </DockPanel>
+            </TabItem.Header>
+            <Label Content="contenu de films" />
+        </TabItem>
+
+
+
+
+        <!--LOCATIONS-->
+        <TabItem x:Name="ItemLocations">
+            <TabItem.Header>
+                <DockPanel>
+                    <Image x:Name="ItemLocationsImage" Width="40" Source="img\locations.png" />
+                    <Label x:Name="ItemLocationsLabel" VerticalAlignment="Center" Content="Locations" FontSize="16" FontWeight="Bold" />
+                </DockPanel>
+            </TabItem.Header>
+            <Label Content="contenu de locations" />
+        </TabItem>
+    </TabControl>
 </Window>
+
