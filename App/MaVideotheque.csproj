@@ -208,6 +208,7 @@
       <DependentUpon>EntityModel.edmx</DependentUpon>
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="img\user.png" />
     <Resource Include="img\harrys\harry_1.png" />
     <Resource Include="img\harrys\harry_2.png" />
     <Resource Include="img\harrys\harry_3.png" />
