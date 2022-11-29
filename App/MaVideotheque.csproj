@@ -88,6 +88,9 @@
     <Compile Include="Client.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\CaseFilm.xaml.cs">
+      <DependentUpon>CaseFilm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -117,6 +120,10 @@
     <Compile Include="Voix.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Page Include="Components\CaseFilm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -191,6 +198,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Components\Assets\harry_1.png" />
+    <Resource Include="Components\Assets\harry_2.png" />
+    <Resource Include="Components\Assets\harry_3.png" />
+    <Resource Include="Components\Assets\harry_4.png" />
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -209,10 +220,6 @@
       <LastGenOutput>EntityModel.cs</LastGenOutput>
     </Content>
     <Resource Include="img\user.png" />
-    <Resource Include="img\harrys\harry_1.png" />
-    <Resource Include="img\harrys\harry_2.png" />
-    <Resource Include="img\harrys\harry_3.png" />
-    <Resource Include="img\harrys\harry_4.png" />
     <Resource Include="img\add.png" />
     <Resource Include="img\clients.png" />
     <Resource Include="img\clients_selected.png" />
