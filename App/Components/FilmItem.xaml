@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="MaVideotheque.Components.FilmItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaVideotheque.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.6*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="1.3*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Column="0" Content="{Binding CodeBarre}"/>
+        <Label Grid.Column="1" Content="{Binding FilmName}"/>
+        <Label Grid.Column="2" Content="{Binding Duree}"/>
+        <Label Grid.Column="3" Content="{Binding Genre}"/>
+        <Label Grid.Column="4" Content="{Binding Prix}"/>
+        <Label Grid.Column="5" Content="{Binding Etat}"/>
+        <Label Grid.Column="6" Content="{Binding EnStock}"/>
+        <Label Grid.Column="7" Content="{Binding EnPret}"/>
+        <Label Grid.Column="8" Content="{Binding EnCommande}"/>
+    </Grid>
+</UserControl>

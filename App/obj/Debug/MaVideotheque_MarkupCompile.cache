@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\App.xaml
-2220424569
+12-852927853
 4427658289
-211016933781
+31734260667
 181394312959
-Components\CaseFilm.xaml;MainWindow.xaml;
+Components\BasicBouton.xaml;Components\CaseFilm.xaml;Components\LocationItem.xaml;Components\FilmItem.xaml;Components\ClientItem.xaml;Components\FilmLocationItem.xaml;Components\ClientLocationItem.xaml;MainWindow.xaml;Views\ClientView.xaml;Views\FilmView.xaml;Views\HomeView.xaml;Views\LocationView.xaml;
 
 False
 
