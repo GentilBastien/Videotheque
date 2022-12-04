@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="MaVideotheque.Modals.ModalClientFacture"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaVideotheque.Modals"
+             xmlns:comp="clr-namespace:MaVideotheque.Components"
+             mc:Ignorable="d">
+    <Grid>
+        <Rectangle Fill="Black" Opacity="0.2" MouseDown="ClicAilleurs"/>
+        <Border CornerRadius="10" Background="White" Height="350" Width="1100">
+            <Grid Margin="10 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="58" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label Content="{Binding Titre}" FontSize="36" FontFamily="Calibri"/>
+                    <Label Content="Historique des location" FontSize="20" FontFamily="Calibri"/>
+                    <Grid Margin="50 0 0 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" FontWeight="Bold" Content="Film id"/>
+                        <Label Grid.Column="1" FontWeight="Bold" Content="Nom film"/>
+                        <Label Grid.Column="2" FontWeight="Bold" Content="Date début location"/>
+                        <Label Grid.Column="3" FontWeight="Bold" Content="Date fin location"/>
+                        <Label Grid.Column="4" FontWeight="Bold" Content="État"/>
+                    </Grid>
+                    <ScrollViewer MaxHeight="180">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <comp:BasicCheckbox/>
+                                <comp:ClientLocationItem Margin="25 0 0 0" Width="1030" FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
+                    <comp:BasicBouton Contenu="Afficher facture" PreviewMouseLeftButtonDown="Afficher_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton Contenu="Imprimer facture" PreviewMouseLeftButtonDown="Imprimer_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton Contenu="Envoyer facture par mail" PreviewMouseLeftButtonDown="Envoyer_PreviewMouseLeftButtonDown"/>
+                    <comp:CancelButton Msg="Annuler" PreviewMouseLeftButtonDown="CancelButton_PreviewMouseLeftButtonDown"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

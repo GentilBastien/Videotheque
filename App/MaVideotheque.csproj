@@ -91,6 +91,12 @@
     <Compile Include="Components\BasicBouton.xaml.cs">
       <DependentUpon>BasicBouton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\BasicCheckbox.xaml.cs">
+      <DependentUpon>BasicCheckbox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\CancelButton.xaml.cs">
+      <DependentUpon>CancelButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\CaseFilm.xaml.cs">
       <DependentUpon>CaseFilm.xaml</DependentUpon>
     </Compile>
@@ -109,6 +115,9 @@
     <Compile Include="Components\ClientLocationItem.xaml.cs">
       <DependentUpon>ClientLocationItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\ValidateButton.xaml.cs">
+      <DependentUpon>ValidateButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -125,6 +134,24 @@
     </Compile>
     <Compile Include="Location.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalClientAdd.xaml.cs">
+      <DependentUpon>ModalClientAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalClientDelete.xaml.cs">
+      <DependentUpon>ModalClientDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalClientFacture.xaml.cs">
+      <DependentUpon>ModalClientFacture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalFilmAdd.xaml.cs">
+      <DependentUpon>ModalFilmAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalFilmDelete.xaml.cs">
+      <DependentUpon>ModalFilmDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalLocationDelete.xaml.cs">
+      <DependentUpon>ModalLocationDelete.xaml</DependentUpon>
     </Compile>
     <Compile Include="Realisateur.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
@@ -154,6 +181,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\BasicCheckbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\CancelButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\CaseFilm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +210,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Components\ClientLocationItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ValidateButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,6 +244,30 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Modals\ModalClientAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalClientDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalClientFacture.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalFilmAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalFilmDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalLocationDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

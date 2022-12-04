@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\App.xaml
-12-852927853
+211319363641
 4427658289
-32-1296819659
+411523361195
 181394312959
-Components\BasicBouton.xaml;Components\CaseFilm.xaml;Components\LocationItem.xaml;Components\FilmItem.xaml;Components\ClientItem.xaml;Components\FilmLocationItem.xaml;Components\ClientLocationItem.xaml;MainWindow.xaml;Views\ClientView.xaml;Views\FilmView.xaml;Views\HomeView.xaml;Views\LocationView.xaml;
+Components\BasicBouton.xaml;Components\BasicCheckbox.xaml;Components\CancelButton.xaml;Components\CaseFilm.xaml;Components\LocationItem.xaml;Components\FilmItem.xaml;Components\ClientItem.xaml;Components\FilmLocationItem.xaml;Components\ClientLocationItem.xaml;Components\ValidateButton.xaml;MainWindow.xaml;Modals\ModalClientAdd.xaml;Modals\ModalClientDelete.xaml;Modals\ModalClientFacture.xaml;Modals\ModalFilmAdd.xaml;Modals\ModalFilmDelete.xaml;Modals\ModalLocationDelete.xaml;Views\ClientView.xaml;Views\FilmView.xaml;Views\HomeView.xaml;Views\LocationView.xaml;
 
 True
 

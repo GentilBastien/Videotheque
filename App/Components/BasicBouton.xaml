@@ -6,11 +6,13 @@
              xmlns:local="clr-namespace:MaVideotheque.Components"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Button Height="43" Padding="10" Margin="10,0,0,0" Content="{Binding Contenu}">
-        <Button.Resources>
-            <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="8"/>
-            </Style>
-        </Button.Resources>
-    </Button>
+    <Grid>
+        <Button Height="43" Padding="10" Margin="10,0,0,0" Content="{Binding Contenu}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="8"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
 </UserControl>

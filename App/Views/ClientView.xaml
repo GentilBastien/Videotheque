@@ -5,109 +5,112 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:comp="clr-namespace:MaVideotheque.Components"
              xmlns:local="clr-namespace:MaVideotheque.Views"
+             xmlns:modals="clr-namespace:MaVideotheque.Modals"
              mc:Ignorable="d" 
              d:DesignHeight="1920" d:DesignWidth="1080">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+    <Grid x:Name="mainContainer">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <!--PARTIE HAUTE CLIENTS-->
-        <DockPanel Grid.Row="0">
-            <Label DockPanel.Dock="Top" Content="ROISSY Pierre" FontSize="36"/>
-            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-                <comp:BasicBouton Contenu="Supprimer client"/>
-                <comp:BasicBouton Contenu="Éditer client"/>
-                <comp:BasicBouton Contenu="Gérer factures"/>
-                <comp:BasicBouton Contenu="Louer un film"/>
-            </StackPanel>
-            <Image Width="140" Source="../img/user.png" Margin="20,0,20,0"/>
+            <!--PARTIE HAUTE CLIENTS-->
+            <DockPanel Grid.Row="0">
+                <Label DockPanel.Dock="Top" Content="ROISSY Pierre" FontSize="36"/>
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
+                    <comp:BasicBouton x:Name="BtnDeleteClient" Contenu="Supprimer client" PreviewMouseLeftButtonDown="BtnDeleteClient_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton Contenu="Éditer client"/>
+                    <comp:BasicBouton Contenu="Gérer factures"/>
+                    <comp:BasicBouton Contenu="Louer un film"/>
+                </StackPanel>
+                <Image Width="140" Source="../img/user.png" Margin="20,0,20,0"/>
 
-            <Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Label Content="Numéro client" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Harry Potter à l'école des Sorciers" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Nom" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Chris Colombus" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Prénom" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="2001" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Téléphone" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Aventure Sci-Fi Action" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Mail" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Aventure Sci-Fi Action" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Adresse" FontSize="20" FontWeight="Bold"/>
+                        <Label Content="Aventure Sci-Fi Action" FontSize="12" Margin="0,-10,0,0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <Label Content="Historique des locations" FontSize="20" FontWeight="Bold"/>
+
+                        <Grid Margin="0,0,18,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontWeight="Bold" Content="Film id"/>
+                            <Label Grid.Column="1" FontWeight="Bold" Content="Nom film"/>
+                            <Label Grid.Column="2" FontWeight="Bold" Content="Date début location"/>
+                            <Label Grid.Column="3" FontWeight="Bold" Content="Date fin location"/>
+                            <Label Grid.Column="4" FontWeight="Bold" Content="État"/>
+                        </Grid>
+                        <ScrollViewer MaxHeight="150">
+                            <StackPanel>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                                <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </StackPanel>
+                </Grid>
+            </DockPanel>
+
+            <!--PARTIE BASSE CLIENTS-->
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="true" ResizeDirection="Rows" Height="2"/>
+            <Grid Grid.Row="1" Margin="0,30,18,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0">
-                    <Label Content="Numéro client" FontSize="20" FontWeight="Bold"/>
-                    <Label Content="Harry Potter à l'école des Sorciers" FontSize="12" Margin="0,-10,0,0"/>
-                    <Label Content="Nom" FontSize="20" FontWeight="Bold"/>
-                    <Label Content="Chris Colombus" FontSize="12" Margin="0,-10,0,0"/>
-                    <Label Content="Prénom" FontSize="20" FontWeight="Bold"/>
-                    <Label Content="2001" FontSize="12" Margin="0,-10,0,0"/>
-                    <Label Content="Téléphone" FontSize="20" FontWeight="Bold"/>
-                    <Label Content="Aventure Sci-Fi Action" FontSize="12" Margin="0,-10,0,0"/>
-                    <Label Content="Mail" FontSize="20" FontWeight="Bold"/>
-                    <Label Content="Aventure Sci-Fi Action" FontSize="12" Margin="0,-10,0,0"/>
-                    <Label Content="Adresse" FontSize="20" FontWeight="Bold"/>
-                    <Label Content="Aventure Sci-Fi Action" FontSize="12" Margin="0,-10,0,0"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <Label Content="Historique des locations" FontSize="20" FontWeight="Bold"/>
-
-                    <Grid Margin="0,0,18,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                            <ColumnDefinition Width="1*" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" FontWeight="Bold" Content="Film id"/>
-                        <Label Grid.Column="1" FontWeight="Bold" Content="Nom film"/>
-                        <Label Grid.Column="2" FontWeight="Bold" Content="Date début location"/>
-                        <Label Grid.Column="3" FontWeight="Bold" Content="Date fin location"/>
-                        <Label Grid.Column="4" FontWeight="Bold" Content="État"/>
-                    </Grid>
-                    <ScrollViewer MaxHeight="150">
-                        <StackPanel>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            <comp:ClientLocationItem FilmId="9799503366236" FilmName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                        </StackPanel>
-                    </ScrollViewer>
-                </StackPanel>
+                <Label Grid.Column="0" FontWeight="Bold" Content="Num. client"/>
+                <Label Grid.Column="1" FontWeight="Bold" Content="Nom"/>
+                <Label Grid.Column="2" FontWeight="Bold" Content="Prénom"/>
+                <Label Grid.Column="3" FontWeight="Bold" Content="Téléphone"/>
+                <Label Grid.Column="4" FontWeight="Bold" Content="Mail"/>
+                <Label Grid.Column="5" FontWeight="Bold" Content="Adresse"/>
+                <Label Grid.Column="6" FontWeight="Bold" Content="Locations en cours"/>
             </Grid>
-        </DockPanel>
-
-        <!--PARTIE BASSE CLIENTS-->
-        <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="true" ResizeDirection="Rows" Height="2"/>
-        <Grid Grid.Row="1" Margin="0,30,18,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" FontWeight="Bold" Content="Num. client"/>
-            <Label Grid.Column="1" FontWeight="Bold" Content="Nom"/>
-            <Label Grid.Column="2" FontWeight="Bold" Content="Prénom"/>
-            <Label Grid.Column="3" FontWeight="Bold" Content="Téléphone"/>
-            <Label Grid.Column="4" FontWeight="Bold" Content="Mail"/>
-            <Label Grid.Column="5" FontWeight="Bold" Content="Adresse"/>
-            <Label Grid.Column="6" FontWeight="Bold" Content="Locations en cours"/>
+            <ScrollViewer Grid.Row="2">
+                <StackPanel>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
-        <ScrollViewer Grid.Row="2">
-            <StackPanel>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-            </StackPanel>
-        </ScrollViewer>
     </Grid>
 </UserControl>

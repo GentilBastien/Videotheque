@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MaVideotheque.Views"
              xmlns:comp="clr-namespace:MaVideotheque.Components"
+             xmlns:local="clr-namespace:MaVideotheque.Views"
+             xmlns:modals="clr-namespace:MaVideotheque.Modals"
              mc:Ignorable="d" 
              d:DesignHeight="1920" d:DesignWidth="1080">
     <Grid>
@@ -66,22 +67,8 @@
                     <Button Width="30" Height="30">+</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Button Margin="10,10,0,0" Padding="10" FontSize="24" Background="#54F98C" Foreground="White">
-                        Valider
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="8"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
-                    <Button Margin="10,10,0,0" Padding="10" FontSize="24" Background="#F95454" Foreground="White">
-                        Enlever tous les filtres
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="8"/>
-                            </Style>
-                        </Button.Resources>
-                    </Button>
+                    <comp:ValidateButton Msg="Valider"/>
+                    <comp:CancelButton Msg="Enlever tous les filtres"/>
                 </StackPanel>
             </StackPanel>
         </Border>
