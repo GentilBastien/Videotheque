@@ -11,11 +11,13 @@ namespace MaVideotheque.Components
         public string LocStart { get; set; }
         public string LocEnd { get; set; }
         public string Prix { set; get; }
-        public string Etat { set; get; }
+        public LocationState Etat { set; get; }
         public LocationItem()
         {
             InitializeComponent();
             this.DataContext = this;
+
+            this.Etat = new LocationState(2);
         }
     }
 }

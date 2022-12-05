@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MaVideotheque.Modals;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,29 @@ using System.Windows.Shapes;
 
 namespace MaVideotheque.Views
 {
-    /// <summary>
-    /// Logique d'interaction pour LocationView.xaml
-    /// </summary>
     public partial class LocationView : UserControl
     {
         public LocationView()
         {
             InitializeComponent();
+        }
+
+        private void BtnCancelLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ModalLocationDelete modal = new ModalLocationDelete("65465846");
+            LocationMainContainer.Children.Add(modal);
+        }
+
+        private void BtnEditLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ModalLocationEdit modal = new ModalLocationEdit("562106051", "56464-az65e5-az65ezre56-zea5r", "458952", "14/05/2001", "21/08/2001");
+            LocationMainContainer.Children.Add(modal);
+        }
+
+        private void BtnMajLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ModalLocationMaj modal = new ModalLocationMaj("546545252");
+            LocationMainContainer.Children.Add(modal);
         }
     }
 }

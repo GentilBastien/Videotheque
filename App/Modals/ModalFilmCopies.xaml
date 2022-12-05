@@ -18,12 +18,12 @@
                 <StackPanel Grid.Row="0">
                     <Label Content="Gérer les copies" FontSize="36" FontFamily="Calibri"/>
                     <Label Content="Actuellement en stock" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputNom" Text="{Binding NbStock}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputStock" Text="{Binding NbStock}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Actuellement en prêt" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputPrenom" Text="{Binding NbPret}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputPret" Text="{Binding NbPret}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Actuellement en commande" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputTel" Text="{Binding NbCommande}" FontStyle="Italic" Margin="0 -8 50 0"/>
-                    <comp:BasicBouton x:Name="BtnCommandeRecue" Contenu="Commande reçue" Width="147" Margin="10" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="InputCommande" Text="{Binding NbCommande}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <comp:BasicBouton x:Name="BtnCommandes" Contenu="Commande reçue" Width="147" Margin="10" HorizontalAlignment="Left" PreviewMouseLeftButtonDown="BtnCommandes_PreviewMouseLeftButtonDown"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
                     <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>

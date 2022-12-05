@@ -12,6 +12,8 @@ namespace MaVideotheque.Modals
         public ModalFilmCopies(int nbStock, int nbPret, int nbCommande)
         {
             InitializeComponent();
+            this.DataContext = this;
+
             this.NbStock = nbStock;
             this.NbPret = nbPret;
             this.NbCommande = nbCommande;
@@ -29,6 +31,14 @@ namespace MaVideotheque.Modals
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.Visibility = Visibility.Collapsed;
+        }
+
+        private void BtnCommandes_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.NbStock += this.NbCommande;
+            this.NbCommande = 0;
+            InputStock.Text = this.NbStock.ToString();
+            InputCommande.Text = this.NbCommande.ToString();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MaVideotheque.Components
         public string Duree { get; set; }
         public string Genre { get; set; }
         public string Prix { get; set; }
-        public string Etat { set; get; }
+        public StockState Etat { set; get; }
         public string EnStock { set; get; }
         public string EnPret { set; get; }
         public string EnCommande { set; get; }
@@ -18,6 +18,8 @@ namespace MaVideotheque.Components
         {
             InitializeComponent();
             this.DataContext = this;
+
+            this.Etat = new StockState(1);
         }
     }
 }

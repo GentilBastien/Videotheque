@@ -24,6 +24,7 @@ namespace MaVideotheque.Modals
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            //TODO
             this.Visibility = Visibility.Collapsed;
         }
     }

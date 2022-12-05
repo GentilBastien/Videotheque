@@ -115,6 +115,12 @@
     <Compile Include="Components\ClientLocationItem.xaml.cs">
       <DependentUpon>ClientLocationItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Components\LocationState.xaml.cs">
+      <DependentUpon>LocationState.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\StockState.xaml.cs">
+      <DependentUpon>StockState.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\ValidateButton.xaml.cs">
       <DependentUpon>ValidateButton.xaml</DependentUpon>
     </Compile>
@@ -158,6 +164,9 @@
     </Compile>
     <Compile Include="Modals\ModalFilmEdit.xaml.cs">
       <DependentUpon>ModalFilmEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalLocationAdd.xaml.cs">
+      <DependentUpon>ModalLocationAdd.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\ModalLocationDelete.xaml.cs">
       <DependentUpon>ModalLocationDelete.xaml</DependentUpon>
@@ -228,6 +237,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Components\LocationState.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\StockState.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\ValidateButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -288,6 +305,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\ModalFilmEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalLocationAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

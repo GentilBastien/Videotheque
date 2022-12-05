@@ -102,3 +102,9 @@ D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalFilm
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalFilmEdit.baml
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationEdit.baml
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationMaj.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Components\LocationState.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Components\LocationState.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Components\StockState.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Components\StockState.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationAdd.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationAdd.baml

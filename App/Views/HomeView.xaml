@@ -90,7 +90,7 @@
                     <ColumnDefinition Width="450"/>
                 </Grid.ColumnDefinitions>
                 <!-- UNE CASE DE FILM -->
-                <comp:CaseFilm Grid.Row="0" Grid.Column="0" SrcImg="Assets\harry_1.png"  Nom_film="le nom du film1" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
+                <comp:CaseFilm Grid.Row="0" Grid.Column="0" SrcImg="Assets\harry_1.png" Nom_film="le nom du film1" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
                 <comp:CaseFilm Grid.Row="0" Grid.Column="1" SrcImg="Assets\harry_2.png" Nom_film="le nom du film2" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
                 <comp:CaseFilm Grid.Row="0" Grid.Column="2" SrcImg="Assets\harry_3.png" Nom_film="le nom du film3" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
                 <comp:CaseFilm Grid.Row="1" Grid.Column="0" SrcImg="Assets\harry_4.png" Nom_film="le nom du film4" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>

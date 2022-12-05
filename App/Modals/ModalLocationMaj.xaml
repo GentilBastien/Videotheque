@@ -8,7 +8,7 @@
              mc:Ignorable="d">
     <Grid>
         <Rectangle Fill="Black" Opacity="0.2" MouseDown="ClicAilleurs"/>
-        <Border CornerRadius="10" Background="White" Height="170" Width="600">
+        <Border CornerRadius="10" Background="White" Height="250" Width="600">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
