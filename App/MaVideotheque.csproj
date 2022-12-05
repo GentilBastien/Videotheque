@@ -141,17 +141,32 @@
     <Compile Include="Modals\ModalClientDelete.xaml.cs">
       <DependentUpon>ModalClientDelete.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\ModalClientEdit.xaml.cs">
+      <DependentUpon>ModalClientEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\ModalClientFacture.xaml.cs">
       <DependentUpon>ModalClientFacture.xaml</DependentUpon>
     </Compile>
     <Compile Include="Modals\ModalFilmAdd.xaml.cs">
       <DependentUpon>ModalFilmAdd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\ModalFilmCopies.xaml.cs">
+      <DependentUpon>ModalFilmCopies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\ModalFilmDelete.xaml.cs">
       <DependentUpon>ModalFilmDelete.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\ModalFilmEdit.xaml.cs">
+      <DependentUpon>ModalFilmEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Modals\ModalLocationDelete.xaml.cs">
       <DependentUpon>ModalLocationDelete.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalLocationEdit.xaml.cs">
+      <DependentUpon>ModalLocationEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\ModalLocationMaj.xaml.cs">
+      <DependentUpon>ModalLocationMaj.xaml</DependentUpon>
     </Compile>
     <Compile Include="Realisateur.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
@@ -252,6 +267,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modals\ModalClientEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\ModalClientFacture.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,11 +279,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modals\ModalFilmCopies.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\ModalFilmDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Modals\ModalFilmEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Modals\ModalLocationDelete.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalLocationEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\ModalLocationMaj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

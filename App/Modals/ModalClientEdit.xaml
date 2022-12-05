@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="MaVideotheque.Modals.ModalClientEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:comp="clr-namespace:MaVideotheque.Components"
+             xmlns:local="clr-namespace:MaVideotheque.Modals"
+             mc:Ignorable="d">
+    <Grid>
+        <Rectangle Fill="Black" Opacity="0.2" MouseDown="ClicAilleurs"/>
+        <Border CornerRadius="10" Background="White" Height="350" Width="800">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="58" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label Content="Éditer Client" FontSize="36" FontFamily="Calibri"/>
+                    <Label Content="Nom" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputNom" Text="{Binding Nom}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Prénom" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputPrenom" Text="{Binding Prenom}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Téléphone" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputTel" Text="{Binding Tel}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Mail" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputMail" Text="{Binding Mail}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Adresse" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputAdresse" Text="{Binding Adresse}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
+                    <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>
+                    <comp:CancelButton Msg="Annuler" PreviewMouseLeftButtonDown="CancelButton_PreviewMouseLeftButtonDown"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

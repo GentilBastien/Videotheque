@@ -92,3 +92,13 @@ D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalClie
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalClientFacture.baml
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Components\BasicCheckbox.g.cs
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Components\BasicCheckbox.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalClientEdit.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalFilmCopies.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalFilmEdit.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationEdit.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationMaj.g.cs
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalClientEdit.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalFilmCopies.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalFilmEdit.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationEdit.baml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\Modals\ModalLocationMaj.baml

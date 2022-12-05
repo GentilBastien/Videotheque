@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="MaVideotheque.Modals.ModalFilmEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaVideotheque.Modals"
+             xmlns:comp="clr-namespace:MaVideotheque.Components"
+             mc:Ignorable="d">
+    <Grid>
+        <Rectangle Fill="Black" Opacity="0.2" MouseDown="ClicAilleurs"/>
+        <Border CornerRadius="10" Background="White" Height="590" Width="800">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="58" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label Content="Éditer la fiche" FontSize="36" FontFamily="Calibri"/>
+                    <Label Content="Nom film" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputFilmname" Text="{Binding Filmname}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Description" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputDescription" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Acteurs principaux" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputActeurs" Text="{Binding Acteurs}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Réalisateur(s)" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputReal" Text="{Binding Realisateurs}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Langues &amp; Sous-titres" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputLang" Text="{Binding Langues}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Année sortie" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputRelease" Text="{Binding Release}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Durée" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputDuree" Text="{Binding Duree}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Genres" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputGenres" Text="{Binding Genres}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Prix location" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputPrix" Text="{Binding Prix}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Chemin photo" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputPath" Text="{Binding Path}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
+                    <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>
+                    <comp:CancelButton Msg="Annuler" PreviewMouseLeftButtonDown="CancelButton_PreviewMouseLeftButtonDown"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

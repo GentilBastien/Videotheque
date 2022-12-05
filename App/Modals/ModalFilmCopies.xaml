@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="MaVideotheque.Modals.ModalFilmCopies"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MaVideotheque.Modals"
+             xmlns:comp="clr-namespace:MaVideotheque.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Rectangle Fill="Black" Opacity="0.2" MouseDown="ClicAilleurs"/>
+        <Border CornerRadius="10" Background="White" Height="310" Width="800">
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="58" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <Label Content="Gérer les copies" FontSize="36" FontFamily="Calibri"/>
+                    <Label Content="Actuellement en stock" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputNom" Text="{Binding NbStock}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Actuellement en prêt" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputPrenom" Text="{Binding NbPret}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Actuellement en commande" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputTel" Text="{Binding NbCommande}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <comp:BasicBouton x:Name="BtnCommandeRecue" Contenu="Commande reçue" Width="147" Margin="10" HorizontalAlignment="Left"/>
+                </StackPanel>
+                <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
+                    <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>
+                    <comp:CancelButton Msg="Annuler" PreviewMouseLeftButtonDown="CancelButton_PreviewMouseLeftButtonDown"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
