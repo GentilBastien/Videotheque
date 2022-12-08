@@ -17,7 +17,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
                     <Label Content="Gérer les copies" FontSize="36" FontFamily="Calibri"/>
-                    <Label Content="Actuellement en stock" FontSize="20" FontFamily="Calibri" />
+                    <Label Content="Stock total" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputStock" Text="{Binding NbStock}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Actuellement en prêt" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputPret" Text="{Binding NbPret}" FontStyle="Italic" Margin="0 -8 50 0"/>

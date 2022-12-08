@@ -11,58 +11,62 @@
     <Grid x:Name="FilmMainContainer">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="580" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
+            <DockPanel Grid.Row="0">
+            </DockPanel>
             <!--PARTIE HAUTE FILMS-->
             <DockPanel Grid.Row="0">
-                <Label DockPanel.Dock="Top" Content="Harry Potter à l'école des sorciers" FontSize="36"/>
+                <Label DockPanel.Dock="Top" Name="TopTitre" Content="Harry Potter à l'école des sorciers" FontSize="36"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <comp:BasicBouton x:Name="BtnDeleteFilm" Contenu="Supprimer fiche" PreviewMouseLeftButtonDown="BtnDeleteFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnEditFilm" Contenu="Éditer la fiche" PreviewMouseLeftButtonDown="BtnEditFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnCopiesFilm" Contenu="Gérer les copies" PreviewMouseLeftButtonDown="BtnCopiesFilm_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnAjoutFilm" Contenu="Ajouter une nouvelle fiche film" PreviewMouseLeftButtonDown="BtnAjoutFilm_PreviewMouseLeftButtonDown"/>
                 </StackPanel>
-                <Image Width="200" Source="../Components/Assets/harry_4.png" Margin="20,0,20,0"/>
+                <Image Width="200" Name="TopImage" Margin="20,0,20,0"/>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="0.3*" />
                         <ColumnDefinition Width="0.7*" />
                     </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0">
+                    <StackPanel Grid.Column="0" Name="TopContentInfo">
                         <Label Content="Description" FontSize="20" FontWeight="Bold"/>
-                        <TextBox TextWrapping="Wrap" AcceptsReturn="True" MaxHeight="100" VerticalScrollBarVisibility="Visible" Text="Le jour de ses onze ans, Harry Potter, un orphelin élevé par un oncle et une tante qui le détestent, voit son existence bouleversée. Un géant vient le chercher pour l'emmener à Poudlard, une école de sorcellerie ! Voler en balai, jeter des sorts, combattre les trolls : Harry se révèle un sorcier doué. Mais un mystère entoure sa naissance et l'effroyable V., le mage dont personne n'ose prononcer le nom." />
+                        <TextBox TextWrapping="Wrap" Name ="TopDescription" AcceptsReturn="True" MaxHeight="100" VerticalScrollBarVisibility="Visible" Text="Le jour de ses onze ans, Harry Potter, un orphelin élevé par un oncle et une tante qui le détestent, voit son existence bouleversée. Un géant vient le chercher pour l'emmener à Poudlard, une école de sorcellerie ! Voler en balai, jeter des sorts, combattre les trolls : Harry se révèle un sorcier doué. Mais un mystère entoure sa naissance et l'effroyable V., le mage dont personne n'ose prononcer le nom." />
                         <Label Content="Acteurs principaux" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Daniel Radcliffe, Emma Watson, Alan Rickman" FontSize="12" Margin="0,-10,0,0"/>
-                        <Label Content="Réalisateur(s)" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Chris Columbus" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopActeurs" Content="" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Réalisateur" FontSize="20" FontWeight="Bold"/>
+                        <Label Name="TopRealisateur" Content="Chris Columbus" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Langues &amp; sous-titres" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Français, Anglais" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopVoix" Content="Français, Anglais" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopSoustitres" Content="Français, Anglais" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Année sortie" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="2001" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopAnnee" Content="2001" FontSize="12" Margin="0,-10,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <Label Content="Durée" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="129min" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopDuree" Content="129min" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Genre" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Aventure Action Sci-Fi" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopGenres" Content="Aventure Action Sci-Fi" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Prix location" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="10€" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopPrix" Content="10€" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="État du stock" FontSize="20" FontWeight="Bold"/>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,-10,0,0">
                                 <Label Content="En stock"/>
-                                <Label Content="3"/>
+                                <Label Name ="TopStock" Content="3"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,-10,0,0">
                                 <Label Content="En prêt"/>
-                                <Label Content="1"/>
+                                <Label Name ="TopPrets" Content="1"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,-10,0,0">
                                 <Label Content="En commande"/>
-                                <Label Content="0"/>
+                                <Label Name="TopCommandes" Content="0"/>
                             </StackPanel>
                         </StackPanel>
                         <Label Content="Locations" FontSize="20" FontWeight="Bold"/>
@@ -74,56 +78,47 @@
                                 <ColumnDefinition Width="1*" />
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" FontWeight="Bold" Content="Loué par"/>
-                            <Label Grid.Column="1" FontWeight="Bold" Content="Date début location"/>
-                            <Label Grid.Column="2" FontWeight="Bold" Content="Date fin location"/>
+                            <Label Grid.Column="1" FontWeight="Bold" Content="Date début"/>
+                            <Label Grid.Column="2" FontWeight="Bold" Content="Date fin"/>
                             <Label Grid.Column="3" FontWeight="Bold" Content="État"/>
                         </Grid>
                         <ScrollViewer MaxHeight="80">
-                            <StackPanel>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                                <comp:FilmLocationItem ClientName="Batman" LocationStart="15/05/2010" LocationEnd="30/05/2010" Etat="Rendu"/>
-                            </StackPanel>
+                            <StackPanel Name="ItemsLocations">
+                             </StackPanel>
                         </ScrollViewer>
                     </StackPanel>
+                    
                 </Grid>
             </DockPanel>
+            
 
             <!--PARTIE BASSE FILMS-->
-            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="true" ResizeDirection="Rows" Height="2"/>
-            <Grid Grid.Row="1" Margin="0,30,18,0">
+            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="false" ResizeDirection="Rows" Height="2"/>
+            <Grid Grid.Row="1" Margin="0,30,18,0" Background="White">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.6*" />
-                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="0.8*" />
+                    <ColumnDefinition Width="2.2*" />
                     <ColumnDefinition Width="0.4*" />
-                    <ColumnDefinition Width="1.3*" />
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="0.5*" />
-                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="1.8*" />
+                    <ColumnDefinition Width="0.25*" />
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.25*" />
+                    <ColumnDefinition Width="0.25*" />
+                    <ColumnDefinition Width="0.25*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" FontWeight="Bold" Content="Code Barre"/>
-                <Label Grid.Column="1" FontWeight="Bold" Content="Nom film"/>
+                <Label Grid.Column="1" FontWeight="Bold" Content="Titre"/>
                 <Label Grid.Column="2" FontWeight="Bold" Content="Durée"/>
                 <Label Grid.Column="3" FontWeight="Bold" Content="Genre"/>
-                <Label Grid.Column="4" FontWeight="Bold" Content="Prix location"/>
+                <Label Grid.Column="4" FontWeight="Bold" Content="Prix"/>
                 <Label Grid.Column="5" FontWeight="Bold" Content="État"/>
-                <Label Grid.Column="6" FontWeight="Bold" Content="En stock"/>
-                <Label Grid.Column="7" FontWeight="Bold" Content="En prêt"/>
-                <Label Grid.Column="8" FontWeight="Bold" Content="En commande"/>
+                <Label Grid.Column="6" FontWeight="Bold" Content="St"/>
+                <Label Grid.Column="7" FontWeight="Bold" Content="Pr"/>
+                <Label Grid.Column="8" FontWeight="Bold" Content="Co"/>
             </Grid>
             <ScrollViewer Grid.Row="2">
-                <StackPanel>
-                    <comp:FilmItem CodeBarre="9880123856885" FilmName="Harry Potter à l'école des sorciers" Duree="129min" Genre="Aventure;Action;Sci-Fi" Prix="10€" EnStock="3" EnPret="8" EnCommande="2"/>
-                    <comp:FilmItem CodeBarre="9880123856885" FilmName="Harry Potter à l'école des sorciers" Duree="129min" Genre="Aventure;Action;Sci-Fi" Prix="10€" EnStock="3" EnPret="8" EnCommande="2"/>
-                    <comp:FilmItem CodeBarre="9880123856885" FilmName="Harry Potter à l'école des sorciers" Duree="129min" Genre="Aventure;Action;Sci-Fi" Prix="10€" EnStock="3" EnPret="8" EnCommande="2"/>
-                    <comp:FilmItem CodeBarre="9880123856885" FilmName="Harry Potter à l'école des sorciers" Duree="129min" Genre="Aventure;Action;Sci-Fi" Prix="10€" EnStock="3" EnPret="8" EnCommande="2"/>
-                    <comp:FilmItem CodeBarre="9880123856885" FilmName="Harry Potter à l'école des sorciers" Duree="129min" Genre="Aventure;Action;Sci-Fi" Prix="10€" EnStock="3" EnPret="8" EnCommande="2"/>
+                <StackPanel x:Name="Filmsitems" Background="White">
+
                 </StackPanel>
             </ScrollViewer>
         </Grid>

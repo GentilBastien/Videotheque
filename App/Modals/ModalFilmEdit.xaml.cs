@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using MaVideotheque.DatabaseDataSetTableAdapters;
+using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -6,32 +9,35 @@ namespace MaVideotheque.Modals
 {
     public partial class ModalFilmEdit : UserControl
     {
-        public string Filmname { get; set; }
-        public string Description { get; set; }
+        public string Titre { get; set; }
+
+        public long Code_Barre { get; set; }
+        public string Synopsis { get; set; }
         public string Acteurs { get; set; }
-        public string Realisateurs { get; set; }
+        public string Realisateur { get; set; }
         public string Langues { get; set; }
-        public string Release { get; set; }
-        public string Duree { get; set; }
+        public int Annee { get; set; }
+        public int Duree { get; set; }
         public string Genres { get; set; }
-        public string Prix { get; set; }
-        public string Path { get; set; }
-        public ModalFilmEdit(string Filmname, string Description, string Acteurs, string Realisateurs, string Langues, 
-            string Release, string Duree, string Genres, string Prix, string Path)
+        public double Prix { get; set; }
+        public string Image { get; set; }
+        public ModalFilmEdit(long id, string titre, string realisateur, int duree, int annee, double prix, string image, string synopsis, string genres, string acteurs, string voix, string sous_titres)
         {
+
+            this.Code_Barre = id;
+            this.Titre = titre;
+            this.Synopsis = synopsis;
+            this.Acteurs = acteurs;
+            this.Realisateur = realisateur;
+            this.Langues = voix + "\n" + sous_titres;
+            this.Annee = annee;
+            this.Duree = duree;
+            this.Genres = genres;
+            this.Prix = prix;
+            this.Image = image;
+
             InitializeComponent();
             this.DataContext = this;
-
-            this.Filmname = Filmname;
-            this.Description = Description;
-            this.Acteurs = Acteurs;
-            this.Realisateurs = Realisateurs;
-            this.Langues = Langues;
-            this.Release = Release;
-            this.Duree = Duree;
-            this.Genres = Genres;
-            this.Prix = Prix;
-            this.Path = Path;
         }
         private void ClicAilleurs(object sender, MouseButtonEventArgs e)
         {

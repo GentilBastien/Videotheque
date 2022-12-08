@@ -8,7 +8,7 @@
              mc:Ignorable="d">
     <Grid>
         <Rectangle Fill="Black" Opacity="0.2" MouseDown="ClicAilleurs"/>
-        <Border CornerRadius="10" Background="White" Height="590" Width="800">
+        <Border CornerRadius="10" Background="White" Height="700" Width="800">
             <Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -16,18 +16,20 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
                     <Label Content="Éditer la fiche" FontSize="36" FontFamily="Calibri"/>
+                    <Label Content="Code barre" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputCodeBarre" Text="{Binding Code_Barre}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Nom film" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputFilmname" Text="{Binding Filmname}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputFilmname" Text="{Binding Titre}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Description" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputDescription" Text="{Binding Description}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputDescription" Text="{Binding Synopsis}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Acteurs principaux" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputActeurs" Text="{Binding Acteurs}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Réalisateur(s)" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputReal" Text="{Binding Realisateurs}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputReal" Text="{Binding Realisateur}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Langues &amp; Sous-titres" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputLang" Text="{Binding Langues}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Année sortie" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputRelease" Text="{Binding Release}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputRelease" Text="{Binding Annee}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Durée" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputDuree" Text="{Binding Duree}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Genres" FontSize="20" FontFamily="Calibri" />
@@ -35,7 +37,7 @@
                     <Label Content="Prix location" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputPrix" Text="{Binding Prix}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Chemin photo" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputPath" Text="{Binding Path}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputPath" Text="{Binding Image}" FontStyle="Italic" Margin="0 -8 50 0"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
                     <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>

@@ -17,6 +17,8 @@
                 <StackPanel Grid.Row="0">
                     <Label Content="Ajouter une nouvelle fiche" FontSize="36" FontFamily="Calibri"/>
                     <Label Content="Nom film" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputBarcode" Text="Insérer le nom du film" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Code barre" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputFilmname" Text="Insérer le nom du film" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Description" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputDescription" Text="Insérer un résumé du film" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" FontStyle="Italic" Margin="0 -8 50 0"/>

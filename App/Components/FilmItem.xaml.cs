@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using MaVideotheque.Views;
 
 namespace MaVideotheque.Components
 {
@@ -18,8 +19,7 @@ namespace MaVideotheque.Components
         {
             InitializeComponent();
             this.DataContext = this;
-
-            this.Etat = new StockState(1);
         }
+
     }
 }
