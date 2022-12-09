@@ -26,8 +26,10 @@
                     <TextBox x:Name="InputActeurs" Text="{Binding Acteurs}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Réalisateur(s)" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputReal" Text="{Binding Realisateur}" FontStyle="Italic" Margin="0 -8 50 0"/>
-                    <Label Content="Langues &amp; Sous-titres" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputLang" Text="{Binding Langues}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Voix" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputVoix" Text="{Binding Voix}" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="Sous-titres" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputSoustitres" Text="{Binding Sous_titres}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Année sortie" FontSize="20" FontFamily="Calibri" />
                     <TextBox x:Name="InputRelease" Text="{Binding Annee}" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Durée" FontSize="20" FontFamily="Calibri" />

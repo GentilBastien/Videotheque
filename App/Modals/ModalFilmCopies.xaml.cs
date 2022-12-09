@@ -6,14 +6,13 @@ namespace MaVideotheque.Modals
 {
     public partial class ModalFilmCopies : UserControl
     {
-        public int NbStock { get; set; }
-        public int NbPret { get; set; }
-        public int NbCommande { get; set; }
-        public ModalFilmCopies(int nbStock, int nbPret, int nbCommande)
+        public int? NbStock { get; set; }
+        public int? NbPret { get; set; }
+        public int? NbCommande { get; set; }
+        public ModalFilmCopies(long? id, int? nbStock, int? nbPret, int? nbCommande)
         {
             InitializeComponent();
             this.DataContext = this;
-
             this.NbStock = nbStock;
             this.NbPret = nbPret;
             this.NbCommande = nbCommande;

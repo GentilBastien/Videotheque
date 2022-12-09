@@ -15,26 +15,45 @@ namespace MaVideotheque.Modals
         public string Synopsis { get; set; }
         public string Acteurs { get; set; }
         public string Realisateur { get; set; }
-        public string Langues { get; set; }
-        public int Annee { get; set; }
-        public int Duree { get; set; }
+        public string Voix { get; set; }
+        public string Sous_titres { get; set; }
+        public int? Annee { get; set; }
+        public int? Duree { get; set; }
         public string Genres { get; set; }
-        public double Prix { get; set; }
+        public double? Prix { get; set; }
         public string Image { get; set; }
-        public ModalFilmEdit(long id, string titre, string realisateur, int duree, int annee, double prix, string image, string synopsis, string genres, string acteurs, string voix, string sous_titres)
+        public ModalFilmEdit(Film film)
         {
 
-            this.Code_Barre = id;
-            this.Titre = titre;
-            this.Synopsis = synopsis;
-            this.Acteurs = acteurs;
-            this.Realisateur = realisateur;
-            this.Langues = voix + "\n" + sous_titres;
-            this.Annee = annee;
-            this.Duree = duree;
-            this.Genres = genres;
-            this.Prix = prix;
-            this.Image = image;
+            this.Code_Barre = film.code_barre;
+            this.Titre = film.titre;
+            this.Synopsis = film.synopsis;
+            this.Acteurs = "";
+            for (int i = 0; i < film.Roles.Count; i++)
+            {
+                this.Acteurs += film.Roles.ElementAt(i).Acteur.nom+ ";";
+            }
+            this.Realisateur = film.Realisateur1.nom;
+            this.Voix = "";
+            for(int i = 0; i<film.Voixes.Count; i++)
+            {
+                this.Voix += film.Voixes.ElementAt(i).Langue.langue1+";";
+            }
+
+            this.Sous_titres = "";
+            for (int i = 0; i < film.Sous_titrages.Count; i++)
+            {
+                this.Sous_titres += film.Sous_titrages.ElementAt(i).Langue.langue1 + ";";
+            }
+            this.Annee = film.annee;
+            this.Duree = film.duree;
+            this.Genres = "";
+            for (int i = 0; i < film.Classifications.Count; i++)
+            {
+                this.Genres += film.Classifications.ElementAt(i).Genre.nom + ";";
+            }
+            this.Prix = film.prix;
+            this.Image = film.image;
 
             InitializeComponent();
             this.DataContext = this;

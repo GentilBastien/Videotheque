@@ -407,6 +407,7 @@
     <Resource Include="Components\Assets\harry_3.png" />
     <Resource Include="Components\Assets\harry_4.png" />
     <Resource Include="Components\Assets\titanic.png" />
+    <Resource Include="Components\Assets\bin.ico" />
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
