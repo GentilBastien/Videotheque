@@ -198,3 +198,11 @@ C:\Users\fbelh\source\repos\Videotheque\App\obj\Debug\MaVideotheque.csproj.CoreC
 C:\Users\fbelh\source\repos\Videotheque\App\obj\Debug\MaVideotheque.csproj.CopyComplete
 C:\Users\fbelh\source\repos\Videotheque\App\obj\Debug\MaVideotheque.exe
 C:\Users\fbelh\source\repos\Videotheque\App\obj\Debug\MaVideotheque.pdb
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\linq2db.dll
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\linq2db.xml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\System.Threading.Tasks.Extensions.xml
