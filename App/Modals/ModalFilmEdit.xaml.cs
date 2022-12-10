@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using MaVideotheque.DatabaseDataSetTableAdapters;
+using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -6,32 +9,54 @@ namespace MaVideotheque.Modals
 {
     public partial class ModalFilmEdit : UserControl
     {
-        public string Filmname { get; set; }
-        public string Description { get; set; }
+        public string Titre { get; set; }
+
+        public long Code_Barre { get; set; }
+        public string Synopsis { get; set; }
         public string Acteurs { get; set; }
-        public string Realisateurs { get; set; }
-        public string Langues { get; set; }
-        public string Release { get; set; }
-        public string Duree { get; set; }
+        public string Realisateur { get; set; }
+        public string Voix { get; set; }
+        public string Sous_titres { get; set; }
+        public int? Annee { get; set; }
+        public int? Duree { get; set; }
         public string Genres { get; set; }
-        public string Prix { get; set; }
-        public string Path { get; set; }
-        public ModalFilmEdit(string Filmname, string Description, string Acteurs, string Realisateurs, string Langues, 
-            string Release, string Duree, string Genres, string Prix, string Path)
+        public double? Prix { get; set; }
+        public string Image { get; set; }
+        public ModalFilmEdit(Film film)
         {
+
+            this.Code_Barre = film.code_barre;
+            this.Titre = film.titre;
+            this.Synopsis = film.synopsis;
+            this.Acteurs = "";
+            for (int i = 0; i < film.Roles.Count; i++)
+            {
+                this.Acteurs += film.Roles.ElementAt(i).Acteur.nom+ ";";
+            }
+            this.Realisateur = film.Realisateur1.nom;
+            this.Voix = "";
+            for(int i = 0; i<film.Voixes.Count; i++)
+            {
+                this.Voix += film.Voixes.ElementAt(i).Langue.langue1+";";
+            }
+
+            this.Sous_titres = "";
+            for (int i = 0; i < film.Sous_titrages.Count; i++)
+            {
+                this.Sous_titres += film.Sous_titrages.ElementAt(i).Langue.langue1 + ";";
+            }
+            this.Annee = film.annee;
+            this.Duree = film.duree;
+            this.Genres = "";
+            for (int i = 0; i < film.Classifications.Count; i++)
+            {
+                this.Genres += film.Classifications.ElementAt(i).Genre.nom + ";";
+            }
+            this.Prix = film.prix;
+            this.Image = film.image;
+
             InitializeComponent();
             this.DataContext = this;
-
-            this.Filmname = Filmname;
-            this.Description = Description;
-            this.Acteurs = Acteurs;
-            this.Realisateurs = Realisateurs;
-            this.Langues = Langues;
-            this.Release = Release;
-            this.Duree = Duree;
-            this.Genres = Genres;
-            this.Prix = Prix;
-            this.Path = Path;
         }
         private void ClicAilleurs(object sender, MouseButtonEventArgs e)
         {

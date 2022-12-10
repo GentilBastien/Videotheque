@@ -23,6 +23,7 @@ namespace MaVideotheque
             this.Sous_titrages = new HashSet<Sous_titrages>();
             this.Voixes = new HashSet<Voix>();
         }
+
     
         public long code_barre { get; set; }
         public System.Guid realisateur { get; set; }

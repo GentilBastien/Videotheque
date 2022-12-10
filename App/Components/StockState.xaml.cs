@@ -29,6 +29,11 @@ namespace MaVideotheque.Components
                     this.Largeur = 79;
                     this.Texte = "Rupture stock";
                     break;
+                case 3: //vide, utile pour les commandes ?
+                    this.Couleur = "white";
+                    this.Largeur = 0;
+                    this.Texte = "";
+                    break;
             }
         }
     }
