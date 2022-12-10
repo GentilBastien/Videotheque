@@ -11,7 +11,7 @@
     <Grid x:Name="FilmMainContainer">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="580" />
+                <RowDefinition Height="580" x:Name="myRowDef"/>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
@@ -93,7 +93,7 @@
             
 
             <!--PARTIE BASSE FILMS-->
-            <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="false" ResizeDirection="Rows" Height="2"/>
+            <GridSplitter x:Name="mySplit" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="false" ResizeDirection="Rows" Height="2"/>
             <Grid Grid.Row="1" Margin="0,30,18,0" Background="White">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.8*" />

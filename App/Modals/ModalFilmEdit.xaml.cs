@@ -70,6 +70,8 @@ namespace MaVideotheque.Modals
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            this.Code_Barre = int.Parse(InputCodeBarre.Text);
+            this.Titre = InputFilmname.Text;
             this.Visibility = Visibility.Collapsed;
         }
     }

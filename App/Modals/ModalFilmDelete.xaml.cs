@@ -1,4 +1,5 @@
-﻿using LinqToDB.SqlQuery;
+﻿using LinqToDB;
+using LinqToDB.SqlQuery;
 using MaVideotheque.Components;
 using MaVideotheque.DatabaseDataSetTableAdapters;
 using MaVideotheque.Views;
@@ -18,6 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
+using DataContext = System.Data.Linq.DataContext;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace MaVideotheque.Modals
@@ -57,8 +59,50 @@ namespace MaVideotheque.Modals
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+
+
+
             String ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\fbelh\source\repos\Videotheque\App\Database.mdf; Integrated Security = True; Connect Timeout = 30";
             DataContext db = new DataContext(ConnectionString);
+
+            //using (db)
+            //{
+
+            //    var queryclassifications = from classification in fv.entities.Classifications
+            //                               where classification.id_film == this.id
+            //                               select classification;
+
+            //    var queryroles = from role in fv.entities.Roles
+            //                     where role.id_film == this.id
+            //                     select role;
+
+            //    var querylocations = from location in fv.entities.Locations
+            //                         where location.id_film == this.id
+            //                         select location;
+
+            //    var queryvoix = from voix in fv.entities.Voixes
+            //                    where voix.id_film == this.id
+            //                    select voix;
+
+            //    var queryst = from sous_titrage in fv.entities.Sous_titrages
+            //                  where sous_titrage.id_film == this.id
+            //                  select sous_titrage;
+
+            //    var queryfilm = (from film in fv.entities.Films
+            //                     where film.code_barre == this.id
+            //                     select film).First();
+
+
+            //    fv.entities.Classifications.RemoveRange(queryclassifications);
+            //    fv.entities.Roles.RemoveRange(queryroles);
+            //    fv.entities.Locations.RemoveRange(querylocations);
+            //    fv.entities.Voixes.RemoveRange(queryvoix);
+            //    fv.entities.Sous_titrages.RemoveRange(queryst);
+            //    fv.entities.Films.Remove(queryfilm);
+            //    fv.entities.SaveChanges();
+            //}
+
+
 
             SqlConnection conn = new SqlConnection(ConnectionString);
             string[] querysDelete = {"delete from Classifications where id_film="+this.id,
@@ -68,8 +112,8 @@ namespace MaVideotheque.Modals
             "delete from Locations where id_film="+this.id,
             "delete from Films where code_barre="+this.id };
 
-            List< SqlCommand > commands = new List< SqlCommand >();
-            for(int i=0; i<querysDelete.Length; i++)
+            List<SqlCommand> commands = new List<SqlCommand>();
+            for (int i = 0; i < querysDelete.Length; i++)
             {
                 commands.Add(conn.CreateCommand());
                 commands.ElementAt(i).CommandText = querysDelete[i];
@@ -80,29 +124,8 @@ namespace MaVideotheque.Modals
             }
 
             db.Connection.Close();
+            fv.ReloadFilmsAfterDelete();
             this.Visibility = Visibility.Collapsed;
-
-           
-
-            fv.Filmsitems.Children.Remove(fv.itemSelected);
-            fv.TopTitre.Content = "Film supprimé : "+fv.TopTitre.Content;
-            fv.TopRealisateur.Content = "";
-            fv.TopSoustitres.Content = "";
-            fv.TopActeurs.Content = "";
-            fv.TopAnnee.Content = "";
-            fv.TopCommandes.Content = "0";
-            fv.TopGenres.Content = "";
-            fv.TopDescription.Text = "";
-            fv.TopPrix.Content = "";
-            fv.TopStock.Content = "0";
-            fv.TopSoustitres.Content = "";
-            fv.TopDuree.Content = "";
-            fv.TopVoix.Content = "";
-            fv.TopImage.Source = new BitmapImage(new Uri("../Components/Assets/bin.ico", UriKind.Relative)); ;
-            fv.ItemsLocations.Children.Clear();
-            fv.selectedFilmId = 0;
-
-            
 
         }
     }
