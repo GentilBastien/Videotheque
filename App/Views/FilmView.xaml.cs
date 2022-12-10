@@ -24,17 +24,20 @@ namespace MaVideotheque.Views
     public partial class FilmView : UserControl
     {
         public long selectedFilmId;
-        private Film SelectedFilm;
+        public Film SelectedFilm;
         private ICollection<Location> currentLocations;
-        private List<Film> allFilms;
+        public List<Film> allFilms;
         public FilmItem itemSelected;
+        public DatabaseEntities entities;
+        public int FilmIndex;
 
 
         public FilmView()
         {
             InitializeComponent();
             this.DataContext = this;
-            InitFilms();
+            this.entities = new DatabaseEntities();
+            InitFilms(init : true);
         }
 
 
@@ -52,7 +55,8 @@ namespace MaVideotheque.Views
 
         private void BtnCopiesFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ModalFilmCopies modal = new ModalFilmCopies(this.SelectedFilm.code_barre, this.SelectedFilm.stock_total, this.SelectedFilm.exemplaires_loues, this.SelectedFilm.commandes);
+            ModalFilmCopies modal = new ModalFilmCopies(this.SelectedFilm);
+            modal.GetFilmView(this);
             FilmMainContainer.Children.Add(modal);
         }
 
@@ -69,31 +73,31 @@ namespace MaVideotheque.Views
         }
 
 
-        public void InitFilms()
+        public void InitFilms(bool init)
         {
-
-            DatabaseEntities dbE = new DatabaseEntities();
-
-            var query = from film in dbE.Films
-                         orderby film.Locations.Count() descending
-                         select film;
-
-            this.allFilms = query.ToList();
-            this.selectedFilmId = query.First().code_barre;
-            this.SelectedFilm = query.First();
-
-            UpdateSelectedFilm(this.selectedFilmId);
-
-            for (int i=0;i< Filmsitems.Children.Count; i++)
+            if (init)
             {
-                Filmsitems.Children.RemoveAt(0);
+                var query = from film in this.entities.Films
+                            orderby film.Locations.Count() descending
+                            select film;
+
+
+                this.allFilms = query.ToList();
+                this.selectedFilmId = query.First().code_barre;
+                this.SelectedFilm = query.First();
+                UpdateSelectedFilm(this.selectedFilmId);
             }
+            
+
+
+            Filmsitems.Children.Clear();
+            
 
             //On crée une liste de FilmItem, qui va nous servir à afficher le tableau
             var myFilmItems = new List<FilmItem>();
 
             //On en instancie autant qu'il faut (ie le nombre de films dans notre BDD)
-            for (int i = 0; i < query.Count(); i++)
+            for (int i = 0; i < allFilms.Count(); i++)
             {
                 myFilmItems.Add(new FilmItem());
             }
@@ -103,7 +107,7 @@ namespace MaVideotheque.Views
             var stockStates = new List<StockState>();
 
             //On en instancie également autant qu'on a de films
-            for (int i = 0; i < query.Count(); i++)
+            for (int i = 0; i < allFilms.Count(); i++)
             {
                 if ((this.allFilms.ElementAt(i).stock_total - this.allFilms.ElementAt(i).exemplaires_loues) > 0) //On regarde l'état du stock
                 {
@@ -148,14 +152,16 @@ namespace MaVideotheque.Views
 
         }
 
-        private void UpdateSelectedFilm(long id)
+        //public void UpdateFilms()
+        //{
+        //    this.entities = new DatabaseEntities();
+        //    this.entities.SaveChanges();
+        //}
+
+        public void UpdateSelectedFilm(long? id)
         {
-
-            DatabaseEntities dbE = new DatabaseEntities();
-
-
             //ici, on récupère les informations de la table film (avec le nom du réalisateur à la place de son id en prime)
-            var query = from film in dbE.Films
+            var query = from film in this.allFilms
                         orderby film.Locations.Count() descending
                         where film.code_barre == id
                         select film;
@@ -246,7 +252,7 @@ namespace MaVideotheque.Views
 
         }
 
-            private void Filmsitems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Filmsitems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             FrameworkElement s = sender as FrameworkElement;
             FilmItem item = e.Source as FilmItem;
@@ -254,8 +260,41 @@ namespace MaVideotheque.Views
             this.selectedFilmId = selectedBarcode;
             this.itemSelected = item;
             UpdateSelectedFilm(this.selectedFilmId);
-            
+        }
 
+
+        public void ReloadFilmsAfterDelete()
+        {
+            Filmsitems.Children.Remove(itemSelected);
+            //TopTitre.Content = "Film supprimé : " + TopTitre.Content;
+            //TopRealisateur.Content = "";
+            //TopSoustitres.Content = "";
+            //TopActeurs.Content = "";
+            //TopAnnee.Content = "";
+            //TopCommandes.Content = "0";
+            //TopGenres.Content = "";
+            //TopDescription.Text = "";
+            //TopPrix.Content = "";
+            //TopStock.Content = "0";
+            //TopSoustitres.Content = "";
+            //TopDuree.Content = "";
+            //TopVoix.Content = "";
+            //TopImage.Source = new BitmapImage(new Uri("../Components/Assets/bin.ico", UriKind.Relative)); ;
+            //ItemsLocations.Children.Clear();
+            allFilms.Remove(this.SelectedFilm);
+            InitFilms(init:false);
+            //this.myRowDef.Height = new GridLength(90);
+            UpdateSelectedFilm(allFilms.First().code_barre);
+        }
+
+        public void ReloadFilmsCopies(Film f,int?stocktot,int?prets,int?commandes)
+        {
+            int idxfilm = allFilms.IndexOf(f);
+            Film myFilm = allFilms.ElementAt(idxfilm);
+            myFilm.stock_total = (int)stocktot;
+            myFilm.commandes = (int)commandes;
+            myFilm.exemplaires_loues = (int)prets;
+            InitFilms(init: false);
         }
 
     }
