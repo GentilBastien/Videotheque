@@ -8,7 +8,7 @@
              xmlns:modals="clr-namespace:MaVideotheque.Modals"
              mc:Ignorable="d" 
              d:DesignHeight="1920" d:DesignWidth="1080">
-    <Grid>
+    <Grid x:Name="Su">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,11 +18,11 @@
         <!--FILTRES-->
 
         <Border Grid.Row="0" Height="320" BorderBrush="#FF000000" Margin="30" BorderThickness="1" CornerRadius="14" Background="#D9D9D9">
-            <StackPanel Grid.Row="0">
+            <StackPanel Grid.Row="0" x:Name="Zaz">
                 <Label Content="Filtres" FontSize="32"/>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Nom film contenant :" FontSize="24"/>
-                    <TextBox Width="200" MaxWidth="200" FontSize="22" Height="30" VerticalContentAlignment="Center">
+                    <TextBox x:Name="InputTitre" Width="200" MaxWidth="200" FontSize="22" Height="30" VerticalContentAlignment="Center">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
@@ -32,7 +32,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Réalisateur contenant :" FontSize="24"/>
-                    <TextBox Width="200" MaxWidth="200" FontSize="22" Height="30" VerticalContentAlignment="Center">
+                    <TextBox x:Name ="InputRealisateur" Width="200" MaxWidth="200" FontSize="22" Height="30" VerticalContentAlignment="Center">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
@@ -42,7 +42,8 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Film sorti après :" FontSize="24"/>
-                    <TextBox Width="60" MaxWidth ="60" MaxLength="4" FontSize="22" Height="30" VerticalContentAlignment="Center">
+
+                    <TextBox Name="InputAfter" Width="60" MaxWidth ="60" MaxLength="4" FontSize="22" Height="30" VerticalContentAlignment="Center">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
@@ -50,7 +51,7 @@
                         </TextBox.Resources>
                     </TextBox>
                     <Label Content="et avant :" FontSize="24"/>
-                    <TextBox Width="60" MaxWidth ="60" MaxLength="4" FontSize="22" Height="30" VerticalContentAlignment="Center">
+                    <TextBox Name="InputBefore" Width="60" MaxWidth ="60" MaxLength="4" FontSize="22" Height="30" VerticalContentAlignment="Center">
                         <TextBox.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="8"/>
@@ -67,7 +68,7 @@
                     <Button Width="30" Height="30">+</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <comp:ValidateButton Msg="Valider"/>
+                    <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>
                     <comp:CancelButton Msg="Enlever tous les filtres"/>
                 </StackPanel>
             </StackPanel>
@@ -76,26 +77,28 @@
         <Label Grid.Row="1" Content="4 Résultats trouvés" FontSize="40" HorizontalAlignment="Center"/>
 
         <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-            <!-- L'AFFICHAGE DES FILMS -->
+            <!-- 
             
-            <Grid>
+            <Grid x:Name="myGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="250"/>
                     <RowDefinition Height="250"/>
-                    <!-- AJOUTER DES ROWS DYNAMIQUEMENT ICI -->
+                    <- AJOUTER DES ROWS DYNAMIQUEMENT ICI -
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="450" />
                     <ColumnDefinition Width="450"/>
                     <ColumnDefinition Width="450"/>
                 </Grid.ColumnDefinitions>
-                <!-- UNE CASE DE FILM -->
+                <- UNE CASE DE FILM 
                 <comp:CaseFilm Grid.Row="0" Grid.Column="0" SrcImg="Assets\harry_1.png" Nom_film="le nom du film1" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
                 <comp:CaseFilm Grid.Row="0" Grid.Column="1" SrcImg="Assets\harry_2.png" Nom_film="le nom du film2" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
                 <comp:CaseFilm Grid.Row="0" Grid.Column="2" SrcImg="Assets\harry_3.png" Nom_film="le nom du film3" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
                 <comp:CaseFilm Grid.Row="1" Grid.Column="0" SrcImg="Assets\harry_4.png" Nom_film="le nom du film4" Real_film="Chris Colombus" Annee_film="2001" Genres_film="Enfants"></comp:CaseFilm>
-                <!-- LES AUTRES CASES DE FILM A AJOUTER ICI-->
+                LES AUTRES CASES DE FILM A AJOUTER ICI->
             </Grid>
+            -->
+            <StackPanel x:Name="myStack"></StackPanel>
         </ScrollViewer>
     </Grid>
 </UserControl>
