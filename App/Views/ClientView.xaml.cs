@@ -2,12 +2,14 @@
 using MaVideotheque.Modals;
 using System.Reflection;
 using System.Windows.Controls;
+using System.Linq;
+using System;
 
 namespace MaVideotheque.Views
 {
     public partial class ClientView : UserControl
     {
-        public long selectedClientId;
+        public Guid selectedClientId;
         public Client selectedClient;
         public DatabaseEntities entities;
         ClientsTableAdapter clientsiu;
@@ -18,7 +20,7 @@ namespace MaVideotheque.Views
             this.DataContext = this;
             this.entities = new DatabaseEntities();
             this.clientsiu = new ClientsTableAdapter();
-            var query = from client in clientsiu.GetData() select client;
+            var query = from client in this.entities.Clients select client;
             this.selectedClientId = query.First().id;
             this.selectedClient = query.First();
         }
