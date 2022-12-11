@@ -32,6 +32,8 @@ namespace MaVideotheque.Views
             InitializeComponent();
             this.DataContext = this;
             InitFilms();
+            this.InputBefore.Text = "2023";
+            this.InputAfter.Text = "1895";
         }
         public void InitFilms()
         {
@@ -43,34 +45,105 @@ namespace MaVideotheque.Views
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+            string[] genres = this.InputGenres.Text.Split(';');
+            string[] acteurs = this.InputActeurs.Text.Split(';');
+
+
+
             var query1 = (from film in this.allFilms where film.titre.Contains(this.InputTitre.Text) select film)
                 .Intersect(from film in this.allFilms where film.Realisateur1.nom.Contains(this.InputRealisateur.Text) select film)
                 .Intersect(from film in this.allFilms where film.annee < int.Parse(this.InputBefore.Text) select film)
                 .Intersect(from film in this.allFilms where film.annee >= int.Parse(this.InputAfter.Text) select film);
 
             //var QueryedFilms = query1.Intersect(query2).Intersect(query3).Intersect(query3);
+            IEnumerable<Film> query2 = from film in this.allFilms where film.code_barre == 001004000207774230001 select film;
+            
+            IEnumerable<Film> query3 = from film in this.allFilms where film.code_barre == 000104000207774230001 select film;
+            foreach (string g in genres)
+            {
+                foreach (Film f in this.allFilms)
+                {
+                    for (int i = 0; i < f.Classifications.Count(); i++)
+                    {
+                        if(f.Classifications.ElementAt(i).Genre.nom == g)
+                        {
+                            query2 = query2.Union( from film in this.allFilms where film == f select film);
+
+                        }
+                    }
+                }
+            }
+
+            foreach (string a in acteurs)
+            {
+                foreach (Film f in this.allFilms)
+                {
+                    for (int i = 0; i < f.Roles.Count(); i++)
+                    {
+                        if (f.Roles.ElementAt(i).Acteur.nom == a)
+                        {
+                            query3 = query3.Union(from film in this.allFilms where film == f select film);
+                        }
+                    }
+                }
+            }
+
+            
+            if (this.InputGenres.Text != ""){
+                query1 = query1.Intersect(query2);
+            }
+
+            if (this.InputActeurs.Text != "")
+            {
+                query1 = query1.Intersect(query3);
+            }
 
             myStack.Children.Clear();
+            
             RenderSelectedFilms(query1.ToList());
             
         }
 
+        public string GetGenres(Film myFilm)
+        {
+            string genres = "";
+            foreach(Classification c in myFilm.Classifications)
+            {
+                genres += c.Genre.nom+";";
+            }
+
+            return genres;
+        }
+        public string GetActeurs(Film myFilm)
+        {
+            string acteurs = "";
+            foreach (Role c in myFilm.Roles)
+            {
+                acteurs += c.Acteur.nom +";";
+            }
+
+            return acteurs;
+        }
         public void RenderSelectedFilms(List<Film> pre_selected_films)
         {
 
            
            
             this.selectedFilms = pre_selected_films;
+            this.FilmsCount.Content = this.selectedFilms.Count + " Résultat(s) trouvé(s) !"; 
 
+            
             foreach(Film film in this.selectedFilms)
             {
-                CaseFilm zaza = new CaseFilm();
-                zaza.Annee_film = film.annee.ToString();
-                zaza.Nom_film = film.titre;
-                zaza.SrcImg = film.image;
-                zaza.Real_film = film.Realisateur1.nom;
-                //this.myGrid.Children.Insert(0, zaza);
-                this.myStack.Children.Add(zaza);
+                CaseFilm maCaseFilm = new CaseFilm();
+                maCaseFilm.Annee_film = film.annee.ToString();
+                maCaseFilm.Nom_film = film.titre;
+                maCaseFilm.SrcImg = "../Components/Assets/" + film.image;
+                
+                maCaseFilm.Real_film = film.Realisateur1.nom;
+                maCaseFilm.Genres_film = GetGenres(film);
+                maCaseFilm.Acteurs_film = GetActeurs(film);
+                this.myStack.Children.Add(maCaseFilm);
             }
         }
 

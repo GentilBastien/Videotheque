@@ -11,7 +11,7 @@
     <Grid x:Name="FilmMainContainer">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="580" x:Name="myRowDef"/>
+                <RowDefinition Height="500" x:Name="myRowDef"/>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
