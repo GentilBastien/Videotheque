@@ -24,6 +24,7 @@
                     <comp:BasicBouton x:Name="BtnEditClient" Contenu="Éditer client" PreviewMouseLeftButtonDown="BtnEditClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnFactureClient" Contenu="Gérer factures" PreviewMouseLeftButtonDown="BtnFactureClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnLouerFilm" Contenu="Louer un film" PreviewMouseLeftButtonDown="BtnLouerFilm_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnAddClient" Contenu="Ajouter un nouveau client" PreviewMouseLeftButtonDown="BtnAddClient_PreviewMouseLeftButtonDown"/>
                 </StackPanel>
                 <Image Width="140" Source="../img/user.png" Margin="20,0,20,0"/>
 
@@ -99,16 +100,7 @@
                 <Label Grid.Column="6" FontWeight="Bold" Content="Locations en cours"/>
             </Grid>
             <ScrollViewer Grid.Row="2">
-                <StackPanel>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
-                    <comp:ClientItem ClientID="654542" ClientPrenom="Dupont" ClientNom="Marcel" ClientTel="06 89 52 12 45" ClientMail="exemple.nom@gmail.com" ClientAdresse="38000 Grenoble 3 rue Joseph" ClientNbLocations="4"/>
+                <StackPanel x:Name="ClientItems">
                 </StackPanel>
             </ScrollViewer>
         </Grid>

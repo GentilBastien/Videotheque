@@ -38,7 +38,7 @@ namespace MaVideotheque.Modals
             this.Visibility = Visibility.Collapsed;
         }
 
-        public void GetFilmView(object parent)
+        public void SetFilmView(object parent)
         {
             this.fv = parent as FilmView; // on stocke le parent actuel
         }
@@ -49,7 +49,8 @@ namespace MaVideotheque.Modals
             this.NbPret = int.Parse(InputPret.Text);
             this.NbCommande = int.Parse(InputCommande.Text);
 
-            String ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\fbelh\source\repos\Videotheque\App\Database.mdf; Integrated Security = True; Connect Timeout = 30";
+            String ConnectionString = MainWindow.CONNECTION_STRING;
+            
             DataContext db = new DataContext(ConnectionString);
 
             SqlConnection conn = new SqlConnection(ConnectionString);

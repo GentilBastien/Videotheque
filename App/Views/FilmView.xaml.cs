@@ -44,7 +44,7 @@ namespace MaVideotheque.Views
         private void BtnDeleteFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ModalFilmDelete modal = new ModalFilmDelete(this.SelectedFilm.code_barre,this.SelectedFilm.titre);
-            modal.GetFilmView(this);
+            modal.SetFilmView(this);
             FilmMainContainer.Children.Add(modal);
         }
         private void BtnEditFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -56,7 +56,7 @@ namespace MaVideotheque.Views
         private void BtnCopiesFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ModalFilmCopies modal = new ModalFilmCopies(this.SelectedFilm);
-            modal.GetFilmView(this);
+            modal.SetFilmView(this);
             FilmMainContainer.Children.Add(modal);
         }
 
@@ -254,10 +254,8 @@ namespace MaVideotheque.Views
 
         private void Filmsitems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            FrameworkElement s = sender as FrameworkElement;
             FilmItem item = e.Source as FilmItem;
-            long selectedBarcode = Int64.Parse(item.CodeBarre);
-            this.selectedFilmId = selectedBarcode;
+            this.selectedFilmId = Int64.Parse(item.CodeBarre);
             this.itemSelected = item;
             UpdateSelectedFilm(this.selectedFilmId);
         }

@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\fbelh\source\repos\Videotheque\App\obj\Debug\
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\obj\Debug\
 MaVideotheque
 none
 false
 DEBUG;TRACE
-C:\Users\fbelh\source\repos\Videotheque\App\App.xaml
+D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\App.xaml
 291239983704
 4427658289
 491224124140
-25462137924
+25-1459394730
 Components\BasicBouton.xaml;Components\BasicCheckbox.xaml;Components\CancelButton.xaml;Components\CaseFilm.xaml;Components\LocationItem.xaml;Components\FilmItem.xaml;Components\ClientItem.xaml;Components\FilmLocationItem.xaml;Components\ClientLocationItem.xaml;Components\LocationState.xaml;Components\StockState.xaml;Components\ValidateButton.xaml;MainWindow.xaml;Modals\ModalClientAdd.xaml;Modals\ModalClientDelete.xaml;Modals\ModalClientEdit.xaml;Modals\ModalClientFacture.xaml;Modals\ModalFilmAdd.xaml;Modals\ModalFilmCopies.xaml;Modals\ModalFilmDelete.xaml;Modals\ModalFilmEdit.xaml;Modals\ModalLocationAdd.xaml;Modals\ModalLocationDelete.xaml;Modals\ModalLocationEdit.xaml;Modals\ModalLocationMaj.xaml;Views\ClientView.xaml;Views\FilmView.xaml;Views\HomeView.xaml;Views\LocationView.xaml;
 
 True

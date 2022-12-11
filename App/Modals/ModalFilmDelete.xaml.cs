@@ -1,4 +1,5 @@
 ﻿using LinqToDB;
+using LinqToDB.Common;
 using LinqToDB.SqlQuery;
 using MaVideotheque.Components;
 using MaVideotheque.DatabaseDataSetTableAdapters;
@@ -17,6 +18,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using static LinqToDB.Common.Configuration;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Application = System.Windows.Forms.Application;
 using DataContext = System.Data.Linq.DataContext;
@@ -30,7 +32,7 @@ namespace MaVideotheque.Modals
         public long id { get; set; }
         public Table<FilmsTableAdapter> FilmTab { get; private set; }
 
-        public FilmView fv = null;
+        public FilmView fv;
 
         public ModalFilmDelete(long id, string titre)
         {
@@ -38,10 +40,10 @@ namespace MaVideotheque.Modals
             this.DataContext = this;
             this.id = id;
             this.Msg = "Êtes-vous sûr de vouloir supprimer " + titre + " de la liste des films ?";
-            
+            this.fv = null;
         }
       
-        public void GetFilmView(object parent)
+        public void SetFilmView(object parent)
         {
             this.fv = parent as FilmView; // on stocke le parent actuel
         }
@@ -59,10 +61,8 @@ namespace MaVideotheque.Modals
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-
-
-            String ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\fbelh\source\repos\Videotheque\App\Database.mdf; Integrated Security = True; Connect Timeout = 30";
+            String ConnectionString = MainWindow.CONNECTION_STRING;
+            
             DataContext db = new DataContext(ConnectionString);
 
             //using (db)
@@ -112,13 +112,12 @@ namespace MaVideotheque.Modals
             "delete from Locations where id_film="+this.id,
             "delete from Films where code_barre="+this.id };
 
-            List<SqlCommand> commands = new List<SqlCommand>();
             for (int i = 0; i < querysDelete.Length; i++)
             {
-                commands.Add(conn.CreateCommand());
-                commands.ElementAt(i).CommandText = querysDelete[i];
+                SqlCommand sqlCommand = conn.CreateCommand();
+                sqlCommand.CommandText = querysDelete[i];
                 conn.Open();
-                commands.ElementAt(i).ExecuteNonQuery();
+                sqlCommand.ExecuteNonQuery();
                 conn.Close();
                 db.SubmitChanges();
             }

@@ -1,4 +1,5 @@
-﻿using MaVideotheque.Modals;
+﻿using MaVideotheque.DatabaseDataSetTableAdapters;
+using MaVideotheque.Modals;
 using System.Reflection;
 using System.Windows.Controls;
 
@@ -6,11 +7,20 @@ namespace MaVideotheque.Views
 {
     public partial class ClientView : UserControl
     {
+        public long selectedClientId;
         public Client selectedClient;
+        public DatabaseEntities entities;
+        ClientsTableAdapter clientsiu;
+
         public ClientView()
         {
             InitializeComponent();
             this.DataContext = this;
+            this.entities = new DatabaseEntities();
+            this.clientsiu = new ClientsTableAdapter();
+            var query = from client in clientsiu.GetData() select client;
+            this.selectedClientId = query.First().id;
+            this.selectedClient = query.First();
         }
 
         private void BtnDeleteClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -34,6 +44,12 @@ namespace MaVideotheque.Views
         private void BtnLouerFilm_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ModalLocationAdd modal = new ModalLocationAdd("ROISSY", "Pierre");
+            ClientMainContainer.Children.Add(modal);
+        }
+
+        private void BtnAddClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            ModalClientAdd modal = new ModalClientAdd();
             ClientMainContainer.Children.Add(modal);
         }
     }
