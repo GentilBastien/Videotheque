@@ -78,41 +78,13 @@ namespace MaVideotheque.Views
             this.TopRendu.Content = selectedLocation.rendu.ToString();
 
 
-            //this.TopName.Content = selectedClient.prenom + " " + selectedClient.nom;
-            //this.TopId.Content = selectedClient.id;
-            //this.TopNom.Content = selectedClient.nom;
-            //this.TopPrenom.Content = selectedClient.prenom;
-            //this.TopMail.Content = selectedClient.mail;
-            //this.TopTel.Content = selectedClient.telephone;
-            //this.TopAdresse.Content = selectedClient.adresse;
-            //this.TopDateNaissance.Content = selectedClient.date_naissance.ToShortDateString();
-
-            //this.LocationsStack.Children.Clear();
-            //for (int i = 0; i < selectedClient.Locations.Count(); i++)
-            //{
-            //    ClientLocationItem itemLoc = new ClientLocationItem();
-            //    itemLoc.FilmId = selectedClient.Locations.ElementAt(i).Film.code_barre.ToString();
-            //    itemLoc.FilmName = selectedClient.Locations.ElementAt(i).Film.titre.ToString();
-            //    if (selectedClient.Locations.ElementAt(i).rendu)
-            //    {
-            //        itemLoc.Etat = "Rendu";
-
-            //    }
-            //    else
-            //    {
-            //        itemLoc.Etat = "Non rendu";
-
-            //    }
-            //    itemLoc.LocationStart = selectedClient.Locations.ElementAt(i).date_debut.ToShortDateString();
-            //    itemLoc.LocationEnd = selectedClient.Locations.ElementAt(i).date_fin.ToShortDateString();
-            //    LocationsStack.Children.Add(itemLoc);
-            //}
         }
 
 
         private void BtnCancelLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ModalLocationDelete modal = new ModalLocationDelete("65465846");
+            ModalLocationDelete modal = new ModalLocationDelete(this.selectedLocation);
+            modal.SetLocationView(this);
             LocationMainContainer.Children.Add(modal);
         }
 

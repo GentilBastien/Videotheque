@@ -51,13 +51,18 @@ namespace MaVideotheque.Views
 
             var query1 = (from film in FilmView.ALL_FILMS where film.titre.Contains(this.InputTitre.Text) select film)
                 .Intersect(from film in FilmView.ALL_FILMS where film.Realisateur1.nom.Contains(this.InputRealisateur.Text) select film)
-                .Intersect(from film in FilmView.ALL_FILMS where film.annee < int.Parse(this.InputBefore.Text) select film)
+                .Intersect(from film in FilmView.ALL_FILMS where film.annee <= int.Parse(this.InputBefore.Text) select film)
                 .Intersect(from film in FilmView.ALL_FILMS where film.annee >= int.Parse(this.InputAfter.Text) select film);
 
             //var QueryedFilms = query1.Intersect(query2).Intersect(query3).Intersect(query3);
             IEnumerable<Film> query2 = from film in FilmView.ALL_FILMS where film.code_barre == 001004000207774230001 select film;
             
             IEnumerable<Film> query3 = from film in FilmView.ALL_FILMS where film.code_barre == 000104000207774230001 select film;
+
+            var queryGenres = from film in FilmView.ALL_FILMS select film;
+            var queryActeurs = queryGenres;
+
+
             foreach (string g in genres)
             {
                 foreach (Film f in FilmView.ALL_FILMS)
@@ -67,11 +72,17 @@ namespace MaVideotheque.Views
                         if(f.Classifications.ElementAt(i).Genre.nom == g)
                         {
                             query2 = query2.Union( from film in FilmView.ALL_FILMS where film == f select film);
-
                         }
+
                     }
                 }
+                queryGenres = queryGenres.Intersect(query2);
+                query2 = from film in FilmView.ALL_FILMS where film.code_barre == 001004000207774230001 select film;
             }
+
+
+
+
 
             foreach (string a in acteurs)
             {
@@ -85,16 +96,20 @@ namespace MaVideotheque.Views
                         }
                     }
                 }
+                queryActeurs = queryActeurs.Intersect(query3);
+                query3 = from film in FilmView.ALL_FILMS where film.code_barre == 001004000207774230001 select film;
             }
 
             
+
+            
             if (this.InputGenres.Text != ""){
-                query1 = query1.Intersect(query2);
+                query1 = query1.Intersect(queryGenres);
             }
 
             if (this.InputActeurs.Text != "")
             {
-                query1 = query1.Intersect(query3);
+                query1 = query1.Intersect(queryActeurs);
             }
 
             myStack.Children.Clear();
