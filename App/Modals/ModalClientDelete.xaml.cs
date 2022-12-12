@@ -20,7 +20,7 @@ namespace MaVideotheque.Modals
             InitializeComponent();
             this.DataContext = this;
             this.clientSelected = client;
-            this.Msg = "Êtes-vous sûr de vouloir supprimer " + client.prenom + " " + client.prenom + " de la liste des clients ?";
+            this.Msg = "Êtes-vous sûr de vouloir supprimer " + client.prenom + " " + client.nom + " de la liste des clients ?";
         }
 
         public void SetClientView(object parent)

@@ -6,8 +6,8 @@ namespace MaVideotheque.Components
     public partial class LocationItem : UserControl
     {
         public string NumLocation { get; set; }
-        public string CodeBarre { get; set; }
-        public string NumClient { get; set; }
+        public string Titre { get; set; }
+        public string NomClient { get; set; }
         public string LocStart { get; set; }
         public string LocEnd { get; set; }
         public string Prix { set; get; }
