@@ -30,7 +30,6 @@ namespace MaVideotheque.Modals
     {
         public string Msg { get; set; }
         public long id { get; set; }
-        public Table<FilmsTableAdapter> FilmTab { get; private set; }
 
         public FilmView fv;
 
@@ -64,45 +63,6 @@ namespace MaVideotheque.Modals
             String ConnectionString = MainWindow.CONNECTION_STRING;
             
             DataContext db = new DataContext(ConnectionString);
-
-            //using (db)
-            //{
-
-            //    var queryclassifications = from classification in fv.entities.Classifications
-            //                               where classification.id_film == this.id
-            //                               select classification;
-
-            //    var queryroles = from role in fv.entities.Roles
-            //                     where role.id_film == this.id
-            //                     select role;
-
-            //    var querylocations = from location in fv.entities.Locations
-            //                         where location.id_film == this.id
-            //                         select location;
-
-            //    var queryvoix = from voix in fv.entities.Voixes
-            //                    where voix.id_film == this.id
-            //                    select voix;
-
-            //    var queryst = from sous_titrage in fv.entities.Sous_titrages
-            //                  where sous_titrage.id_film == this.id
-            //                  select sous_titrage;
-
-            //    var queryfilm = (from film in fv.entities.Films
-            //                     where film.code_barre == this.id
-            //                     select film).First();
-
-
-            //    fv.entities.Classifications.RemoveRange(queryclassifications);
-            //    fv.entities.Roles.RemoveRange(queryroles);
-            //    fv.entities.Locations.RemoveRange(querylocations);
-            //    fv.entities.Voixes.RemoveRange(queryvoix);
-            //    fv.entities.Sous_titrages.RemoveRange(queryst);
-            //    fv.entities.Films.Remove(queryfilm);
-            //    fv.entities.SaveChanges();
-            //}
-
-
 
             SqlConnection conn = new SqlConnection(ConnectionString);
             string[] querysDelete = {"delete from Classifications where id_film="+this.id,

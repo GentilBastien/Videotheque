@@ -18,9 +18,19 @@ namespace MaVideotheque.Views
 {
     public partial class LocationView : UserControl
     {
+        public static List<Location> ALL_LOCATIONS { get; set; }
+
         public LocationView()
         {
             InitializeComponent();
+
+            DatabaseEntities entities = new DatabaseEntities();
+            var query3 = from location in entities.Locations
+                         orderby location.rendu
+                         ascending
+                         select location;
+
+            ALL_LOCATIONS = query3.ToList();
         }
 
         private void BtnCancelLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

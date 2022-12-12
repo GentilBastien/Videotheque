@@ -26,18 +26,28 @@ namespace MaVideotheque.Views
         public long selectedFilmId;
         public Film SelectedFilm;
         private ICollection<Location> currentLocations;
-        public List<Film> allFilms;
         public FilmItem itemSelected;
-        public DatabaseEntities entities;
         public int FilmIndex;
+        public static List<Film> ALL_FILMS { get; set; }
+
 
 
         public FilmView()
         {
             InitializeComponent();
             this.DataContext = this;
-            this.entities = new DatabaseEntities();
-            InitFilms(init : true);
+
+            var entities = new DatabaseEntities();
+
+
+            var query1 = from film in entities.Films
+                         orderby film.Locations.Count() descending
+                         select film;
+
+            ALL_FILMS = query1.ToList();
+
+
+            InitFilms();
         }
 
 
@@ -73,22 +83,12 @@ namespace MaVideotheque.Views
         }
 
 
-        public void InitFilms(bool init)
+        public void InitFilms()
         {
-            if (init)
-            {
-                var query = from film in this.entities.Films
-                            orderby film.Locations.Count() descending
-                            select film;
-
-
-                this.allFilms = query.ToList();
-                this.selectedFilmId = query.First().code_barre;
-                this.SelectedFilm = query.First();
-                UpdateSelectedFilm(this.selectedFilmId);
-            }
-            
-
+            this.SelectedFilm = ALL_FILMS.First();
+            this.selectedFilmId = SelectedFilm.code_barre;
+                
+            UpdateSelectedFilm(this.selectedFilmId);
 
             Filmsitems.Children.Clear();
             
@@ -97,7 +97,7 @@ namespace MaVideotheque.Views
             var myFilmItems = new List<FilmItem>();
 
             //On en instancie autant qu'il faut (ie le nombre de films dans notre BDD)
-            for (int i = 0; i < allFilms.Count(); i++)
+            for (int i = 0; i < ALL_FILMS.Count(); i++)
             {
                 myFilmItems.Add(new FilmItem());
             }
@@ -107,9 +107,9 @@ namespace MaVideotheque.Views
             var stockStates = new List<StockState>();
 
             //On en instancie également autant qu'on a de films
-            for (int i = 0; i < allFilms.Count(); i++)
+            for (int i = 0; i < ALL_FILMS.Count(); i++)
             {
-                if ((this.allFilms.ElementAt(i).stock_total - this.allFilms.ElementAt(i).exemplaires_loues) > 0) //On regarde l'état du stock
+                if ((ALL_FILMS.ElementAt(i).stock_total - ALL_FILMS.ElementAt(i).exemplaires_loues) > 0) //On regarde l'état du stock
                 {
                     stockStates.Add(new StockState(0)); //positif - en stock
                 }
@@ -122,24 +122,24 @@ namespace MaVideotheque.Views
 
             //On parcourt tous les FilmItems de la liste films, puis on les customise
             //suivant les valeurs de la première requête
-            for (int i = 0; i < allFilms.Count(); i++)
+            for (int i = 0; i < ALL_FILMS.Count(); i++)
             {
-                myFilmItems.ElementAt(i).CodeBarre = this.allFilms.ElementAt(i).code_barre.ToString();
-                myFilmItems.ElementAt(i).FilmName = this.allFilms.ElementAt(i).titre;
-                myFilmItems.ElementAt(i).Duree = convert(this.allFilms.ElementAt(i).duree);
-                myFilmItems.ElementAt(i).Prix = this.allFilms.ElementAt(i).prix.ToString();
-                myFilmItems.ElementAt(i).EnCommande = this.allFilms.ElementAt(i).commandes.ToString();
-                myFilmItems.ElementAt(i).EnStock = (this.allFilms.ElementAt(i).stock_total - this.allFilms.ElementAt(i).exemplaires_loues).ToString();
-                myFilmItems.ElementAt(i).EnPret = this.allFilms.ElementAt(i).exemplaires_loues.ToString();
+                myFilmItems.ElementAt(i).CodeBarre = ALL_FILMS.ElementAt(i).code_barre.ToString();
+                myFilmItems.ElementAt(i).FilmName = ALL_FILMS.ElementAt(i).titre;
+                myFilmItems.ElementAt(i).Duree = convert(ALL_FILMS.ElementAt(i).duree);
+                myFilmItems.ElementAt(i).Prix = ALL_FILMS.ElementAt(i).prix.ToString();
+                myFilmItems.ElementAt(i).EnCommande = ALL_FILMS.ElementAt(i).commandes.ToString();
+                myFilmItems.ElementAt(i).EnStock = (ALL_FILMS.ElementAt(i).stock_total - ALL_FILMS.ElementAt(i).exemplaires_loues).ToString();
+                myFilmItems.ElementAt(i).EnPret = ALL_FILMS.ElementAt(i).exemplaires_loues.ToString();
                 myFilmItems.ElementAt(i).Etat = stockStates.ElementAt(i);
 
                 myFilmItems.ElementAt(i).MouseLeftButtonDown += Filmsitems_MouseLeftButtonDown;
 
                 //On réinitialise genresList à chaque itération
                 string genres = "";
-                for (int j = 0; j < this.allFilms.ElementAt(i).Classifications.Count(); j++)
+                for (int j = 0; j < ALL_FILMS.ElementAt(i).Classifications.Count(); j++)
                 {
-                    genres += this.allFilms.ElementAt(i).Classifications.ElementAt(j).Genre.nom + ";";
+                    genres += ALL_FILMS.ElementAt(i).Classifications.ElementAt(j).Genre.nom + ";";
 
                     myFilmItems.ElementAt(i).Genre = genres;
 
@@ -160,8 +160,8 @@ namespace MaVideotheque.Views
 
         public void UpdateSelectedFilm(long? id)
         {
-            //ici, on récupère les informations de la table film (avec le nom du réalisateur à la place de son id en prime)
-            var query = from film in this.allFilms
+            //ici, on récupère les informations de la table film
+            var query = from film in ALL_FILMS
                         orderby film.Locations.Count() descending
                         where film.code_barre == id
                         select film;
@@ -264,35 +264,20 @@ namespace MaVideotheque.Views
         public void ReloadFilmsAfterDelete()
         {
             Filmsitems.Children.Remove(itemSelected);
-            //TopTitre.Content = "Film supprimé : " + TopTitre.Content;
-            //TopRealisateur.Content = "";
-            //TopSoustitres.Content = "";
-            //TopActeurs.Content = "";
-            //TopAnnee.Content = "";
-            //TopCommandes.Content = "0";
-            //TopGenres.Content = "";
-            //TopDescription.Text = "";
-            //TopPrix.Content = "";
-            //TopStock.Content = "0";
-            //TopSoustitres.Content = "";
-            //TopDuree.Content = "";
-            //TopVoix.Content = "";
-            //TopImage.Source = new BitmapImage(new Uri("../Components/Assets/bin.ico", UriKind.Relative)); ;
-            //ItemsLocations.Children.Clear();
-            allFilms.Remove(this.SelectedFilm);
-            InitFilms(init:false);
-            //this.myRowDef.Height = new GridLength(90);
-            UpdateSelectedFilm(allFilms.First().code_barre);
+          
+            ALL_FILMS.Remove(this.SelectedFilm);
+            InitFilms();
+            UpdateSelectedFilm(ALL_FILMS.First().code_barre);
         }
 
         public void ReloadFilmsCopies(Film f,int?stocktot,int?prets,int?commandes)
         {
-            int idxfilm = allFilms.IndexOf(f);
-            Film myFilm = allFilms.ElementAt(idxfilm);
+            int idxfilm = ALL_FILMS.IndexOf(f);
+            Film myFilm = ALL_FILMS.ElementAt(idxfilm);
             myFilm.stock_total = (int)stocktot;
             myFilm.commandes = (int)commandes;
             myFilm.exemplaires_loues = (int)prets;
-            InitFilms(init: false);
+            InitFilms();
         }
 
     }

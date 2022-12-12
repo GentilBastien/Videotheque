@@ -25,7 +25,6 @@ namespace MaVideotheque.Views
 
     public partial class HomeView : UserControl
     {
-        public List<Film> allFilms;
         public List<Film> selectedFilms;
         public HomeView()
         {
@@ -39,7 +38,7 @@ namespace MaVideotheque.Views
         {
             DatabaseEntities myEntities = new DatabaseEntities();
             var query = from film in myEntities.Films select film;
-            this.allFilms = query.ToList();
+            FilmView.ALL_FILMS = query.ToList();
         }
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -50,24 +49,24 @@ namespace MaVideotheque.Views
 
 
 
-            var query1 = (from film in this.allFilms where film.titre.Contains(this.InputTitre.Text) select film)
-                .Intersect(from film in this.allFilms where film.Realisateur1.nom.Contains(this.InputRealisateur.Text) select film)
-                .Intersect(from film in this.allFilms where film.annee < int.Parse(this.InputBefore.Text) select film)
-                .Intersect(from film in this.allFilms where film.annee >= int.Parse(this.InputAfter.Text) select film);
+            var query1 = (from film in FilmView.ALL_FILMS where film.titre.Contains(this.InputTitre.Text) select film)
+                .Intersect(from film in FilmView.ALL_FILMS where film.Realisateur1.nom.Contains(this.InputRealisateur.Text) select film)
+                .Intersect(from film in FilmView.ALL_FILMS where film.annee < int.Parse(this.InputBefore.Text) select film)
+                .Intersect(from film in FilmView.ALL_FILMS where film.annee >= int.Parse(this.InputAfter.Text) select film);
 
             //var QueryedFilms = query1.Intersect(query2).Intersect(query3).Intersect(query3);
-            IEnumerable<Film> query2 = from film in this.allFilms where film.code_barre == 001004000207774230001 select film;
+            IEnumerable<Film> query2 = from film in FilmView.ALL_FILMS where film.code_barre == 001004000207774230001 select film;
             
-            IEnumerable<Film> query3 = from film in this.allFilms where film.code_barre == 000104000207774230001 select film;
+            IEnumerable<Film> query3 = from film in FilmView.ALL_FILMS where film.code_barre == 000104000207774230001 select film;
             foreach (string g in genres)
             {
-                foreach (Film f in this.allFilms)
+                foreach (Film f in FilmView.ALL_FILMS)
                 {
                     for (int i = 0; i < f.Classifications.Count(); i++)
                     {
                         if(f.Classifications.ElementAt(i).Genre.nom == g)
                         {
-                            query2 = query2.Union( from film in this.allFilms where film == f select film);
+                            query2 = query2.Union( from film in FilmView.ALL_FILMS where film == f select film);
 
                         }
                     }
@@ -76,13 +75,13 @@ namespace MaVideotheque.Views
 
             foreach (string a in acteurs)
             {
-                foreach (Film f in this.allFilms)
+                foreach (Film f in FilmView.ALL_FILMS)
                 {
                     for (int i = 0; i < f.Roles.Count(); i++)
                     {
                         if (f.Roles.ElementAt(i).Acteur.nom == a)
                         {
-                            query3 = query3.Union(from film in this.allFilms where film == f select film);
+                            query3 = query3.Union(from film in FilmView.ALL_FILMS where film == f select film);
                         }
                     }
                 }
@@ -127,7 +126,6 @@ namespace MaVideotheque.Views
         public void RenderSelectedFilms(List<Film> pre_selected_films)
         {
 
-           
            
             this.selectedFilms = pre_selected_films;
             this.FilmsCount.Content = this.selectedFilms.Count + " Résultat(s) trouvé(s) !"; 

@@ -13,6 +13,7 @@ namespace MaVideotheque.Modals
     public partial class ModalFilmCopies : UserControl
     {
         public Film monFilm;
+
         public long? id;
         public int? NbStock { get; set; }
         public int? NbPret { get; set; }

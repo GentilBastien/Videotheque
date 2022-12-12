@@ -16,17 +16,17 @@
                     <RowDefinition Height="58" />
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
-                    <Label Content="Location de film pour ROISSY Pierre" FontSize="36" FontFamily="Calibri"/>
+                    <Label Content="{Binding Msg}" FontSize="36" FontFamily="Calibri"/>
                     <Label Content="Code barre film" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputNom" Text="Insérer un code barre" FontStyle="Italic" Margin="0 -8 50 0"/>
-                    <Label Content="Nom film" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputCodeBarre" Text="Insérer un code barre" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <!--<Label Content="Titre du film" FontSize="20" FontFamily="Calibri" />
                     <Label Content="Le seigneur des anneaux" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Prix à payer" FontSize="20" FontFamily="Calibri" />
-                    <Label Content="13€" FontStyle="Italic" Margin="0 -8 50 0"/>
-                    <Label Content="Date début location" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputMail" Text="06/12/2022" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <Label Content="7€" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    --><Label Content="Date début location" FontSize="20" FontFamily="Calibri" />
+                    <TextBox x:Name="InputDateDebut" Text="06/12/2022" FontStyle="Italic" Margin="0 -8 50 0"/>
                     <Label Content="Date fin location" FontSize="20" FontFamily="Calibri" />
-                    <TextBox x:Name="InputAdresse" Text="Insérer une date" FontStyle="Italic" Margin="0 -8 50 0"/>
+                    <TextBox x:Name="InputDateFin" Text="Insérer une date" FontStyle="Italic" Margin="0 -8 50 0"/>
                 </StackPanel>
                 <StackPanel Grid.Row="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,20,0">
                     <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>
