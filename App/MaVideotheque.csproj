@@ -402,13 +402,41 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Components\Assets\harry_1.png" />
-    <Resource Include="Components\Assets\harry_2.png" />
-    <Resource Include="Components\Assets\harry_3.png" />
-    <Resource Include="Components\Assets\harry_4.png" />
+    <Resource Include="Components\Assets\harry_potter_1.png" />
+    <Resource Include="Components\Assets\harry_potter_2.png" />
+    <Resource Include="Components\Assets\harry_potter_3.png" />
+    <Resource Include="Components\Assets\harry_potter_4.png" />
     <Resource Include="Components\Assets\titanic.png" />
     <Resource Include="Components\Assets\bin.ico" />
     <Resource Include="Components\Assets\les_valseuses.png" />
+    <Resource Include="Components\Assets\eyes_wide_shut.png" />
+    <Resource Include="Components\Assets\fight_club.png" />
+    <Resource Include="Components\Assets\frankenstein.png" />
+    <Resource Include="Components\Assets\invasion_los_angeles.png" />
+    <Resource Include="Components\Assets\la_belle_et_la_bete.png" />
+    <Resource Include="Components\Assets\les_affranchis.png" />
+    <Resource Include="Components\Assets\les_aventuriers_de_larche_perdue.png" />
+    <Resource Include="Components\Assets\les_petites_marguerites.png" />
+    <Resource Include="Components\Assets\les_temps_modernes.png" />
+    <Resource Include="Components\Assets\le_dictateur.png" />
+    <Resource Include="Components\Assets\le_kid.png" />
+    <Resource Include="Components\Assets\le_loup_de_wall_street.png" />
+    <Resource Include="Components\Assets\no_pain_no_gain.png" />
+    <Resource Include="Components\Assets\seven.png" />
+    <Resource Include="Components\Assets\star_wars_1.png" />
+    <Resource Include="Components\Assets\star_wars_2.png" />
+    <Resource Include="Components\Assets\star_wars_3.png" />
+    <Resource Include="Components\Assets\star_wars_4.png" />
+    <Resource Include="Components\Assets\taxi_driver.png" />
+    <Resource Include="Components\Assets\the_thing.png" />
+    <Resource Include="Components\Assets\the_truman_show.png" />
+    <Resource Include="Components\Assets\the_wicker_man.png" />
+    <Resource Include="Components\Assets\casino.png" />
+    <Resource Include="Components\Assets\shutter_island.png" />
+    <Resource Include="Components\Assets\harry_potter_5.png" />
+    <Resource Include="Components\Assets\harry_potter_6.png" />
+    <Resource Include="Components\Assets\harry_potter_7.png" />
+    <Resource Include="Components\Assets\harry_potter_7_2.png" />
     <Content Include="Database.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

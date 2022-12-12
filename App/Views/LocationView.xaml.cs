@@ -1,4 +1,5 @@
-﻿using MaVideotheque.Modals;
+﻿using MaVideotheque.Components;
+using MaVideotheque.Modals;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,72 @@ namespace MaVideotheque.Views
 {
     public partial class LocationView : UserControl
     {
+        public static List<Location> ALL_LOCATIONS { get; set; }
+
+        public Location selectedLocation = null;
+
+        public LocationItem itemSelected = null;
+
+        public Guid? selectedLocationId = null;
         public LocationView()
         {
             InitializeComponent();
+
+            DatabaseEntities entities = new DatabaseEntities();
+            var query3 = from location in entities.Locations
+                         orderby location.rendu
+                         ascending
+                         select location;
+
+            ALL_LOCATIONS = query3.ToList();
+
+            InitLocations();
         }
+
+        public void InitLocations()
+        {
+            this.selectedLocation = ALL_LOCATIONS.First();
+            this.selectedLocationId = selectedLocation.id;
+            this.MyStackLoc.Children.Clear();
+
+            for(int i=0; i < ALL_LOCATIONS.Count();i++)
+            {
+                LocationItem myLocationItem = new LocationItem();
+                myLocationItem.Titre = ALL_LOCATIONS.ElementAt(i).Film.titre;
+                myLocationItem.NomClient = ALL_LOCATIONS.ElementAt(i).Client.prenom + "" + ALL_LOCATIONS.ElementAt(i).Client.nom;
+                myLocationItem.NumLocation = ALL_LOCATIONS.ElementAt(i).id.ToString();
+                myLocationItem.Prix = ALL_LOCATIONS.ElementAt(i).Film.prix.ToString() + "€";
+                myLocationItem.LocStart = ALL_LOCATIONS.ElementAt(i).date_debut.ToShortDateString();
+                myLocationItem.LocEnd = ALL_LOCATIONS.ElementAt(i).date_fin.ToShortDateString();
+                myLocationItem.MouseLeftButtonDown += LocationItem_PreviewMouseLeftButtonDown;
+
+                this.MyStackLoc.Children.Add(myLocationItem);
+            }
+
+            UpdateSelectedLocation();
+
+        }
+
+        public void UpdateSelectedLocation()
+        {
+            this.TopIdLoc.Content = selectedLocation.id.ToString();
+            this.TopIdClient.Content = selectedLocation.id_client.ToString();
+            this.TopTitreFilm.Content = selectedLocation.Film.titre.ToString();
+            this.TopNomClient.Content = selectedLocation.Client.prenom + " " + selectedLocation.Client.prenom;
+            this.TopCodeBarre.Content = selectedLocation.id_film.ToString();
+            this.TopPrix.Content = selectedLocation.Film.prix + "€";
+            this.TopDateDebut.Content = selectedLocation.date_debut.ToShortDateString();
+            this.TopDateFin.Content = selectedLocation.date_fin.ToShortDateString();
+            this.TopRendu.Content = selectedLocation.rendu.ToString();
+
+
+        }
+
 
         private void BtnCancelLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ModalLocationDelete modal = new ModalLocationDelete("65465846");
+            ModalLocationDelete modal = new ModalLocationDelete(this.selectedLocation);
+            modal.SetLocationView(this);
             LocationMainContainer.Children.Add(modal);
         }
 
@@ -39,6 +98,20 @@ namespace MaVideotheque.Views
         {
             ModalLocationMaj modal = new ModalLocationMaj("546545252");
             LocationMainContainer.Children.Add(modal);
+        }
+
+        private void LocationItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LocationItem item = e.Source as LocationItem;
+            this.selectedLocationId = Guid.Parse(item.NumLocation);
+            this.selectedLocation = (from location in ALL_LOCATIONS where location.id == this.selectedLocationId select location).First();
+            this.itemSelected = item;
+            UpdateSelectedLocation();
+        }
+
+        private void BtnActualiser_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

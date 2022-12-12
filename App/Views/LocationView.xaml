@@ -23,34 +23,36 @@
                     <comp:BasicBouton x:Name="BtnCancelLocation" Contenu="Annuler location" PreviewMouseLeftButtonDown="BtnCancelLocation_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnEditLocation" Contenu="Éditer location" PreviewMouseLeftButtonDown="BtnEditLocation_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnMajLocation" Contenu="Mettre à jour location" PreviewMouseLeftButtonDown="BtnMajLocation_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnActualiser" Contenu="Actualiser la page" PreviewMouseLeftButtonDown="BtnActualiser_PreviewMouseLeftButtonDown"/>
+
                 </StackPanel>
 
-                <Grid Margin="0,0,800,0">
+                <Grid Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*" />
-                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
                     <StackPanel Grid.Column="0">
                         <Label Content="Num. location " FontSize="20" FontWeight="Bold"/>
-                        <Label Content="4896321" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopIdLoc" Content="4896321" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Code barre film" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="CNDSJ2DDFFCLO" FontSize="12" Margin="0,-10,0,0"/>
-                        <Label Content="Nom film" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Le Seigneur des Anneaux : La communauté de l'anneau" FontSize="12" Margin="0,-10,0,0"/>
-                        <Label Content="Num. client " FontSize="20" FontWeight="Bold"/>
-                        <Label Content="489528" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopCodeBarre" Content="CNDSJ2DDFFCLO" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Titre film" FontSize="20" FontWeight="Bold"/>
+                        <Label Name="TopTitreFilm" Content="Le Seigneur des Anneaux : La communauté de l'anneau" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Id client " FontSize="20" FontWeight="Bold"/>
+                        <Label Name ="TopIdClient" Content="489528" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Nom client" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Roissy Pierre" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopNomClient"  Content="Roissy Pierre" FontSize="12" Margin="0,-10,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <Label Content="Date début location" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="12/05/2010" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopDateDebut" Content="12/05/2010" FontSize="12"/>
                         <Label Content="Date fin location" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="12/05/2010" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopDateFin" Content="12/05/2010" FontSize="12"/>
                         <Label Content="Prix payé" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="13€" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopPrix" Content="13€" FontSize="12"/>
                         <Label Content="État de la location" FontSize="20" FontWeight="Bold"/>
-                        <Label Content="Rendu" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopRendu" Content="Rendu" FontSize="12"/>
                     </StackPanel>
                 </Grid>
             </DockPanel>
@@ -59,29 +61,24 @@
             <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="DarkGray" ShowsPreview="true" ResizeDirection="Rows" Height="2"/>
             <Grid Grid.Row="1" Margin="0,30,18,0">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.45*" />
+                    <ColumnDefinition Width="1.7*" />
+                    <ColumnDefinition Width="0.8*" />
                     <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
-                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="0.5*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" FontWeight="Bold" Content="Num. Location"/>
-                <Label Grid.Column="1" FontWeight="Bold" Content="Code barre film"/>
-                <Label Grid.Column="2" FontWeight="Bold" Content="Num. client"/>
-                <Label Grid.Column="3" FontWeight="Bold" Content="Date début location"/>
-                <Label Grid.Column="4" FontWeight="Bold" Content="Date fin location"/>
-                <Label Grid.Column="5" FontWeight="Bold" Content="Prix payé"/>
+                <Label Grid.Column="1" FontWeight="Bold" Content="Titre film"/>
+                <Label Grid.Column="2" FontWeight="Bold" Content="Nom client"/>
+                <Label Grid.Column="3" FontWeight="Bold" Content="Date début"/>
+                <Label Grid.Column="4" FontWeight="Bold" Content="Date fin"/>
+                <Label Grid.Column="5" FontWeight="Bold" Content="Prix"/>
                 <Label Grid.Column="6" FontWeight="Bold" Content="État"/>
             </Grid>
             <ScrollViewer Grid.Row="2">
-                <StackPanel>
-                    <comp:LocationItem NumLocation="4896321" CodeBarre="9880123856885" NumClient="83258312" LocStart="12/05/2010" LocEnd="12/05/2010" Prix="13€" />
-                    <comp:LocationItem NumLocation="4896321" CodeBarre="9880123856885" NumClient="83258312" LocStart="12/05/2010" LocEnd="12/05/2010" Prix="13€" />
-                    <comp:LocationItem NumLocation="4896321" CodeBarre="9880123856885" NumClient="83258312" LocStart="12/05/2010" LocEnd="12/05/2010" Prix="13€" />
-                    <comp:LocationItem NumLocation="4896321" CodeBarre="9880123856885" NumClient="83258312" LocStart="12/05/2010" LocEnd="12/05/2010" Prix="13€" />
-                    <comp:LocationItem NumLocation="4896321" CodeBarre="9880123856885" NumClient="83258312" LocStart="12/05/2010" LocEnd="12/05/2010" Prix="13€" />
+                <StackPanel Name ="MyStackLoc">
                 </StackPanel>
             </ScrollViewer>
         </Grid>
