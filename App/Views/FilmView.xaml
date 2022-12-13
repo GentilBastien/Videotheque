@@ -26,6 +26,7 @@
                     <comp:BasicBouton x:Name="BtnEditFilm" Contenu="Éditer la fiche" PreviewMouseLeftButtonDown="BtnEditFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnCopiesFilm" Contenu="Gérer les copies" PreviewMouseLeftButtonDown="BtnCopiesFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnAjoutFilm" Contenu="Ajouter une nouvelle fiche film" PreviewMouseLeftButtonDown="BtnAjoutFilm_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnRefresh" Contenu="Actualiser la page" PreviewMouseLeftButtonDown="BtnRefresh_PreviewMouseLeftButtonDown"/>
                 </StackPanel>
                 <Image Width="200" Name="TopImage" Margin="20,0,20,0"/>
 

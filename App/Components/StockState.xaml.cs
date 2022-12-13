@@ -16,18 +16,18 @@ namespace MaVideotheque.Components
             {
                 case 0: //en rayon
                     this.Couleur = "#54F98C";
-                    this.Largeur = 53;
+                    this.Largeur = 60;
                     this.Texte = "En rayon";
                     break;
                 case 1: //commandés
                     this.Couleur = "#F98F54";
-                    this.Largeur = 72;
+                    this.Largeur = 60;
                     this.Texte = "Commandés";
                     break;
                 case 2: //rupture stock
                     this.Couleur = "#F95454";
-                    this.Largeur = 79;
-                    this.Texte = "Rupture stock";
+                    this.Largeur = 60;
+                    this.Texte = "Rupture";
                     break;
                 case 3: //vide, utile pour les commandes ?
                     this.Couleur = "white";

@@ -25,6 +25,8 @@
                     <comp:BasicBouton x:Name="BtnFactureClient" Contenu="Gérer factures" PreviewMouseLeftButtonDown="BtnFactureClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnLouerFilm" Contenu="Louer un film" PreviewMouseLeftButtonDown="BtnLouerFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnAddClient" Contenu="Ajouter un nouveau client" PreviewMouseLeftButtonDown="BtnAddClient_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnRefresh" Contenu="Actualiser la page" PreviewMouseLeftButtonDown="BtnRefresh_PreviewMouseLeftButtonDown"/>
+
                 </StackPanel>
                 <Image Width="140" Source="../img/user.png" Margin="20,0,20,0"/>
 

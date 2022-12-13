@@ -80,8 +80,21 @@ namespace MaVideotheque.Modals
                     adapter.InsertCommand.ExecuteNonQuery();
                 }
 
+                using (SqlConnection conn = new SqlConnection(MainWindow.CONNECTION_STRING))
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter();
+                    SqlCommand command = new SqlCommand(
+                    "UPDATE Films SET exemplaires_loues="+ query.First().exemplaires_loues + "WHERE code_barre like '"+Int64.Parse(this.InputCodeBarre.Text)+"'", conn);
+
+                    adapter.InsertCommand = command;
+                    conn.Open();
+                    adapter.InsertCommand.ExecuteNonQuery();
+                }
+
                 LocationView.ALL_LOCATIONS.Add(MyNewLoc);
                 SelectedClient.Locations.Add(MyNewLoc);
+                query.First().Locations.Add(MyNewLoc);
+                query.First().exemplaires_loues++;
                 cv.InitClients();
 
             }

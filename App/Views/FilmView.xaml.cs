@@ -73,6 +73,7 @@ namespace MaVideotheque.Views
         private void BtnAjoutFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ModalFilmAdd modal = new ModalFilmAdd();
+            modal.SetFilmView(this);
             FilmMainContainer.Children.Add(modal);
         }
 
@@ -166,13 +167,14 @@ namespace MaVideotheque.Views
                         where film.code_barre == id
                         select film;
 
+
             this.SelectedFilm = query.First();
 
             this.currentLocations = this.SelectedFilm.Locations;
 
             ItemsLocations.Children.Clear();
 
-            TopTitre.Content = this.SelectedFilm.titre +"\n" + this.SelectedFilm.code_barre.ToString();
+            TopTitre.Content = this.SelectedFilm.titre + "\n" + this.SelectedFilm.code_barre.ToString();
 
             TopRealisateur.Content = this.SelectedFilm.Realisateur1.nom;
 
@@ -183,43 +185,56 @@ namespace MaVideotheque.Views
             TopPrix.Content = this.SelectedFilm.prix + "€";
 
             TopStock.Content = this.SelectedFilm.stock_total - this.SelectedFilm.exemplaires_loues;
-             
+
             TopPrets.Content = this.SelectedFilm.exemplaires_loues;
 
             TopCommandes.Content = this.SelectedFilm.commandes;
 
             TopDescription.Text = this.SelectedFilm.synopsis;
 
-            TopImage.Source = new BitmapImage(new Uri("../Components/Assets/"+this.SelectedFilm.image, UriKind.Relative));
+            TopImage.Source = new BitmapImage(new Uri("../Components/Assets/" + this.SelectedFilm.image, UriKind.Relative));
 
 
             string genres = "";
-            for(int i = 0; i < this.SelectedFilm.Classifications.Count; i++)
+            for (int i = 0; i < this.SelectedFilm.Classifications.Count; i++)
             {
-                genres += this.SelectedFilm.Classifications.ElementAt(i).Genre.nom.ToString()+";";
+                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
+                {
+                    genres += this.SelectedFilm.Classifications.ElementAt(i).Genre.nom + ";";
+                }
             }
             TopGenres.Content = genres;
 
-            
+
             string voix = "";
-            for(int i = 0; i < this.SelectedFilm.Voixes.Count; i++)
+            for (int i = 0; i < this.SelectedFilm.Voixes.Count; i++)
             {
-                voix+=this.SelectedFilm.Voixes.ElementAt(i).Langue.langue1 + ";";
+                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
+                {
+                    voix += this.SelectedFilm.Voixes.ElementAt(i).Langue.langue1 + ";";
+                }
             }
             TopVoix.Content = voix;
 
 
             string sous_titres = "";
-            for(int i=0; i<this.SelectedFilm.Sous_titrages.Count; i++)
+            for (int i = 0; i < this.SelectedFilm.Sous_titrages.Count; i++)
             {
-                sous_titres += this.SelectedFilm.Sous_titrages.ElementAt(i).Langue.langue1+";";
+                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
+                {
+                    sous_titres += this.SelectedFilm.Sous_titrages.ElementAt(i).Langue.langue1 + ";";
+                }
             }
             TopSoustitres.Content = sous_titres;
 
 
             string acteurs = "";
-            for(int i = 0; i < this.SelectedFilm.Roles.Count;i++) { 
-                acteurs+= this.SelectedFilm.Roles.ElementAt(i).Acteur.nom.ToString()+";";
+            for (int i = 0; i < this.SelectedFilm.Roles.Count; i++)
+            {
+                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
+                {
+                    acteurs += this.SelectedFilm.Roles.ElementAt(i).Acteur.nom.ToString() + ";";
+                }
             }
             TopActeurs.Content = acteurs;
 
@@ -249,8 +264,9 @@ namespace MaVideotheque.Views
                 ItemsLocations.Children.Add(locationsItems.ElementAt(i));
             }
 
-
-        }
+        
+            }
+        
 
         private void Filmsitems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -280,5 +296,9 @@ namespace MaVideotheque.Views
             InitFilms();
         }
 
+        private void BtnRefresh_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            InitFilms();
+        }
     }
 }

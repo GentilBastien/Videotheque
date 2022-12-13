@@ -183,6 +183,9 @@ namespace MaVideotheque.Views
             ClientMainContainer.Children.Add(modal);
         }
 
-        
+        private void BtnRefresh_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            InitClients();
+        }
     }
 }
