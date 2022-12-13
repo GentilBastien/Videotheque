@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace MaVideotheque.Components
 {
@@ -30,6 +32,11 @@ namespace MaVideotheque.Components
                     this.Texte = "En retard";
                     break;
             }
+        }
+
+        public static implicit operator string(LocationState v)
+        {
+            return v.Texte;
         }
     }
 }

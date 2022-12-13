@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static LinqToDB.Reflection.Methods.LinqToDB.Insert;
 
 namespace MaVideotheque.Views
 {
@@ -57,8 +58,24 @@ namespace MaVideotheque.Views
                 myLocationItem.LocStart = ALL_LOCATIONS.ElementAt(i).date_debut.ToShortDateString();
                 myLocationItem.LocEnd = ALL_LOCATIONS.ElementAt(i).date_fin.ToShortDateString();
                 myLocationItem.MouseLeftButtonDown += LocationItem_PreviewMouseLeftButtonDown;
+                if (ALL_LOCATIONS.ElementAt(i).rendu)
+                {
+                    myLocationItem.Etat = new LocationState(0);
+                }
+                else
+                {
+                    if (ALL_LOCATIONS.ElementAt(i).date_fin < System.DateTime.Today)
+                    {
+                        myLocationItem.Etat = new LocationState(2);
+                    }
+                    else
+                    {
+                        myLocationItem.Etat = new LocationState(1);
+                    }
+                }
 
-                this.MyStackLoc.Children.Add(myLocationItem);
+
+                    this.MyStackLoc.Children.Add(myLocationItem);
             }
 
             UpdateSelectedLocation();
@@ -75,7 +92,24 @@ namespace MaVideotheque.Views
             this.TopPrix.Content = selectedLocation.Film.prix + "€";
             this.TopDateDebut.Content = selectedLocation.date_debut.ToShortDateString();
             this.TopDateFin.Content = selectedLocation.date_fin.ToShortDateString();
-            this.TopRendu.Content = selectedLocation.rendu.ToString();
+
+            myState.Children.Clear();
+            if (selectedLocation.rendu)
+            {
+                this.myState.Children.Add( new LocationState(0));
+            }
+            else
+            {
+                if (selectedLocation.date_fin < System.DateTime.Now)
+                {
+                    this.myState.Children.Add(new LocationState(2));
+                }
+                else
+                {
+                    this.myState.Children.Add(new LocationState(1));
+                }
+            }
+            //this.TopRendu.Content = selectedLocation.rendu.ToString();
 
 
         }

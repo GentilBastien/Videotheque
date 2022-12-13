@@ -52,7 +52,7 @@
                         <Label Content="Prix payé" FontSize="20" FontWeight="Bold"/>
                         <Label Name="TopPrix" Content="13€" FontSize="12"/>
                         <Label Content="État de la location" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopRendu" Content="Rendu" FontSize="12"/>
+                        <StackPanel Name="myState"/>
                     </StackPanel>
                 </Grid>
             </DockPanel>

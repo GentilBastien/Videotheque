@@ -17,7 +17,6 @@ namespace MaVideotheque.Components
             InitializeComponent();
             this.DataContext = this;
 
-            this.Etat = new LocationState(2);
         }
     }
 }

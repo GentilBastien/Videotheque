@@ -164,7 +164,8 @@ namespace MaVideotheque.Views
 
         private void BtnFactureClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ModalClientFacture modal = new ModalClientFacture("ROISSY", "Pierre");
+            ModalClientFacture modal = new ModalClientFacture(selectedClient);
+            modal.SetClientView(this);
             ClientMainContainer.Children.Add(modal);
         }
 
