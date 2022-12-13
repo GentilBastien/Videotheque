@@ -17,12 +17,9 @@
                 <StackPanel Grid.Row="0">
                     <Label Content="{Binding Titre}" FontSize="36" FontFamily="Calibri"/>
                     <Label Content="État de la location" FontSize="20" FontFamily="Calibri" />
-                    <StackPanel Orientation="Horizontal">
-                        <comp:BasicCheckbox/>
-                        <Label Content="En location"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <comp:BasicCheckbox/>
+
+                    <StackPanel Orientation="Horizontal" Name="MyStack">
+                        <CheckBox x:Name="myCheckbox" IsChecked="{Binding rendu}"/>
                         <Label Content="Rendu"/>
                     </StackPanel>
                 </StackPanel>

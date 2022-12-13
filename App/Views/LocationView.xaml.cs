@@ -90,13 +90,15 @@ namespace MaVideotheque.Views
 
         private void BtnEditLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ModalLocationEdit modal = new ModalLocationEdit("562106051", "56464-az65e5-az65ezre56-zea5r", "458952", "14/05/2001", "21/08/2001");
+            ModalLocationEdit modal = new ModalLocationEdit(this.selectedLocation);
+            modal.SetLocationView(this);
             LocationMainContainer.Children.Add(modal);
         }
 
         private void BtnMajLocation_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ModalLocationMaj modal = new ModalLocationMaj("546545252");
+            ModalLocationMaj modal = new ModalLocationMaj(selectedLocation);
+            modal.SetLocationView(this);
             LocationMainContainer.Children.Add(modal);
         }
 
@@ -111,6 +113,19 @@ namespace MaVideotheque.Views
 
         private void BtnActualiser_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            InitLocations();
+        }
+
+        public void ReloadLocationAfterEdit(long CodeBarre, string DateDebut, string DateFin)
+        {
+            int index = ALL_LOCATIONS.IndexOf(this.selectedLocation);
+            this.selectedLocation.id_film = CodeBarre;
+            this.selectedLocation.date_debut = System.DateTime.Parse(DateDebut);
+            this.selectedLocation.date_fin = System.DateTime.Parse(DateFin);
+
+            ALL_LOCATIONS.RemoveAt(index);
+            ALL_LOCATIONS.Insert(index, this.selectedLocation);
+            InitLocations();
 
         }
     }
