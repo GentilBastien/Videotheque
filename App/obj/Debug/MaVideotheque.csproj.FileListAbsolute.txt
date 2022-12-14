@@ -206,3 +206,7 @@ D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\linq2db.xml
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Users\basti\Desktop\MIASHS\M2\S9\MaVideotheque\App\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\fbelh\Source\Repos\Videotheque\App\bin\Debug\MaVideotheque.exe.manifest
+C:\Users\fbelh\Source\Repos\Videotheque\App\bin\Debug\MaVideotheque.application
+C:\Users\fbelh\Source\Repos\Videotheque\App\obj\Debug\MaVideotheque.exe.manifest
+C:\Users\fbelh\Source\Repos\Videotheque\App\obj\Debug\MaVideotheque.application
