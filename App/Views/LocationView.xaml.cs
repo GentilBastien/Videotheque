@@ -87,7 +87,7 @@ namespace MaVideotheque.Views
             this.TopIdLoc.Content = selectedLocation.id.ToString();
             this.TopIdClient.Content = selectedLocation.id_client.ToString();
             this.TopTitreFilm.Content = selectedLocation.Film.titre.ToString();
-            this.TopNomClient.Content = selectedLocation.Client.prenom + " " + selectedLocation.Client.prenom;
+            this.TopNomClient.Content = selectedLocation.Client.prenom + " " + selectedLocation.Client.nom;
             this.TopCodeBarre.Content = selectedLocation.id_film.ToString();
             this.TopPrix.Content = selectedLocation.Film.prix + "€";
             this.TopDateDebut.Content = selectedLocation.date_debut.ToShortDateString();

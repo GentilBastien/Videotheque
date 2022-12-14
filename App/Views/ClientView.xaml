@@ -18,7 +18,7 @@
 
             <!--PARTIE HAUTE CLIENTS-->
             <DockPanel Grid.Row="0">
-                <Label Name="TopName" DockPanel.Dock="Top" Content="ROISSY Pierre" FontSize="36"/>
+                <Label Name="TopName" DockPanel.Dock="Top" Content="" FontSize="36"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <comp:BasicBouton x:Name="BtnDeleteClient" Contenu="Supprimer client" PreviewMouseLeftButtonDown="BtnDeleteClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnEditClient" Contenu="Éditer client" PreviewMouseLeftButtonDown="BtnEditClient_PreviewMouseLeftButtonDown"/>

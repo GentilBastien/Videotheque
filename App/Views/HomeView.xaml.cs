@@ -160,6 +160,14 @@ namespace MaVideotheque.Views
             }
         }
 
-        
+        private void CancelButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.InputBefore.Text = "2023";
+            this.InputAfter.Text = "1895";
+            this.InputActeurs.Text = "";
+            this.InputGenres.Text = "";
+            this.InputTitre.Text = "";
+            this.InputRealisateur.Text = "";
+        }
     }
 }

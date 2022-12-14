@@ -82,7 +82,7 @@
                 
                 <StackPanel Orientation="Horizontal">
                     <comp:ValidateButton Msg="Valider" PreviewMouseLeftButtonDown="ValidateButton_PreviewMouseLeftButtonDown"/>
-                    <comp:CancelButton Msg="Enlever tous les filtres"/>
+                    <comp:CancelButton Msg="Enlever tous les filtres" PreviewMouseLeftButtonDown="CancelButton_PreviewMouseLeftButtonDown"/>
                 </StackPanel>
             </StackPanel>
         </Border>

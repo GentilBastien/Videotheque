@@ -49,10 +49,12 @@ namespace MaVideotheque.Modals
             if ((bool)this.myCheckbox.IsChecked)
             {
                 siu = 1;
+                maLocation.rendu = true;
             }
             else
             {
                 siu = 0;
+                maLocation.rendu = false;
             }
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -64,6 +66,7 @@ namespace MaVideotheque.Modals
                 conn.Open();
                 adapter.InsertCommand.ExecuteNonQuery();
             }
+
 
             this.Visibility = Visibility.Collapsed;
         }
