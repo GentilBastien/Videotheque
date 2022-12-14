@@ -1,6 +1,7 @@
 ﻿using MaVideotheque.DatabaseDataSetTableAdapters;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,9 @@ namespace MaVideotheque
         public MainWindow()
         {
             InitializeComponent();
-
+            var enviroment = System.Environment.CurrentDirectory;
+            string projectDirectory = Directory.GetParent(enviroment).Parent.FullName;
+            CONNECTION_STRING = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + projectDirectory + @"\Database.mdf;Integrated Security = True;";
         }
     }
 }
