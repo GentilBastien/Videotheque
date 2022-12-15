@@ -1,5 +1,4 @@
-﻿using MaVideotheque.DatabaseDataSetTableAdapters;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;

@@ -1,83 +1,54 @@
 ﻿using MaVideotheque.Components;
-using MaVideotheque.DatabaseDataSetTableAdapters;
 using MaVideotheque.Modals;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MaVideotheque.Views
 {
     public partial class FilmView : UserControl
     {
-        public long selectedFilmId;
-        public Film SelectedFilm;
-        private ICollection<Location> currentLocations;
-        public FilmItem itemSelected;
-        public int FilmIndex;
+        //Correspond au film affiché en haut de vue.
+        //De base ce sera le premier film de la liste triée, sinon le dernier film cliqué 
+        public Film SelectedFilm { get; set; }
+
+        //Cet élément statique contient toutes les entités du type film
         public static List<Film> ALL_FILMS { get; set; }
 
 
 
         public FilmView()
         {
+           
             InitializeComponent();
             this.DataContext = this;
 
+            //Ici, on charge nos entités dans notre élément statique ALL_FILMS à l'aide
+            //d'une requête LinQ
             var entities = new DatabaseEntities();
 
-
-            var query1 = from film in entities.Films
+            ALL_FILMS = (from film in entities.Films
                          orderby film.Locations.Count() descending
-                         select film;
+                         select film).ToList();
 
-            ALL_FILMS = query1.ToList();
-
-
-            InitFilms();
+            //On initialise ensuite les composants visuels et SelectedFilm
+            if (ALL_FILMS.Any())
+            {
+                InitFilms();
+            }
+            else
+            {
+                this.SelectedFilm = null;
+            }
+            
         }
 
-
-        private void BtnDeleteFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            ModalFilmDelete modal = new ModalFilmDelete(this.SelectedFilm.code_barre,this.SelectedFilm.titre);
-            modal.SetFilmView(this);
-            FilmMainContainer.Children.Add(modal);
-        }
-        private void BtnEditFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            ModalFilmEdit modal = new ModalFilmEdit(this.SelectedFilm);
-            FilmMainContainer.Children.Add(modal);
-        }
-
-        private void BtnCopiesFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            ModalFilmCopies modal = new ModalFilmCopies(this.SelectedFilm);
-            modal.SetFilmView(this);
-            FilmMainContainer.Children.Add(modal);
-        }
-
-        private void BtnAjoutFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            ModalFilmAdd modal = new ModalFilmAdd();
-            modal.SetFilmView(this);
-            FilmMainContainer.Children.Add(modal);
-        }
-
-        public static String convert(int? mins) //pour convertir les minutes en h:min
+        //Cette méthode statique nous permet de convertir les minutes au format heures:minutes
+        //Utile pour afficher la durée du film de façon lisible dans notre vue
+        public static String convert(int? mins)
         {
             int? hours = (mins - mins % 60) / 60;
             return "" + hours + "h" + (mins - hours * 60);
@@ -86,219 +57,217 @@ namespace MaVideotheque.Views
 
         public void InitFilms()
         {
+            //On commence par initialiser SelectedFilm
             this.SelectedFilm = ALL_FILMS.First();
-            this.selectedFilmId = SelectedFilm.code_barre;
-                
-            UpdateSelectedFilm(this.selectedFilmId);
-
-            Filmsitems.Children.Clear();
             
+            //La méthode InitFilms sera souvent appelée (à chaque modification de BDD), donc
+            //on réinitialise tableau de films à chaque passage pour rendre l'affichage dynamique 
+            Filmsitems.Children.Clear();
 
-            //On crée une liste de FilmItem, qui va nous servir à afficher le tableau
-            var myFilmItems = new List<FilmItem>();
+            //On reconstruit ce tableau 
 
-            //On en instancie autant qu'il faut (ie le nombre de films dans notre BDD)
             for (int i = 0; i < ALL_FILMS.Count(); i++)
             {
-                myFilmItems.Add(new FilmItem());
-            }
+                //on instancie un nouveau filmitem
+                FilmItem dummyFilmItem = new FilmItem();
 
-            //On crée une liste de StockState, c'est à dire des indications visibles sur l'état du stock.
-            //Ce sont des compossants à part entière
-            var stockStates = new List<StockState>();
+                //On le remplit avec les données issues de nos entités (films)
+                dummyFilmItem.CodeBarre = ALL_FILMS.ElementAt(i).code_barre.ToString();
+                dummyFilmItem.FilmName = ALL_FILMS.ElementAt(i).titre;
+                dummyFilmItem.Duree = convert(ALL_FILMS.ElementAt(i).duree);
+                dummyFilmItem.Prix = ALL_FILMS.ElementAt(i).prix.ToString();
+                dummyFilmItem.EnCommande = ALL_FILMS.ElementAt(i).commandes.ToString();
+                dummyFilmItem.EnStock = (ALL_FILMS.ElementAt(i).stock_total - ALL_FILMS.ElementAt(i).exemplaires_loues).ToString();
+                dummyFilmItem.EnPret = ALL_FILMS.ElementAt(i).exemplaires_loues.ToString();
 
-            //On en instancie également autant qu'on a de films
-            for (int i = 0; i < ALL_FILMS.Count(); i++)
-            {
-                if ((ALL_FILMS.ElementAt(i).stock_total - ALL_FILMS.ElementAt(i).exemplaires_loues) > 0) //On regarde l'état du stock
+                //on instancie un StockState pour afficher en couleur l'état du stocck associé au film
+                if ((ALL_FILMS.ElementAt(i).stock_total - ALL_FILMS.ElementAt(i).exemplaires_loues) > 0)
                 {
-                    stockStates.Add(new StockState(0)); //positif - en stock
+                    dummyFilmItem.Etat = new StockState(0); //positif - en stock
                 }
                 else
                 {
-                    stockStates.Add(new StockState(2)); //nul - rupture
+                    dummyFilmItem.Etat = new StockState(2); //nul - rupture
                 }
-            }
 
+                //On ajoute un évènement de clic souris sur ce FilmItem
+                dummyFilmItem.MouseLeftButtonDown += Filmsitems_MouseLeftButtonDown;
 
-            //On parcourt tous les FilmItems de la liste films, puis on les customise
-            //suivant les valeurs de la première requête
-            for (int i = 0; i < ALL_FILMS.Count(); i++)
-            {
-                myFilmItems.ElementAt(i).CodeBarre = ALL_FILMS.ElementAt(i).code_barre.ToString();
-                myFilmItems.ElementAt(i).FilmName = ALL_FILMS.ElementAt(i).titre;
-                myFilmItems.ElementAt(i).Duree = convert(ALL_FILMS.ElementAt(i).duree);
-                myFilmItems.ElementAt(i).Prix = ALL_FILMS.ElementAt(i).prix.ToString();
-                myFilmItems.ElementAt(i).EnCommande = ALL_FILMS.ElementAt(i).commandes.ToString();
-                myFilmItems.ElementAt(i).EnStock = (ALL_FILMS.ElementAt(i).stock_total - ALL_FILMS.ElementAt(i).exemplaires_loues).ToString();
-                myFilmItems.ElementAt(i).EnPret = ALL_FILMS.ElementAt(i).exemplaires_loues.ToString();
-                myFilmItems.ElementAt(i).Etat = stockStates.ElementAt(i);
-
-                myFilmItems.ElementAt(i).MouseLeftButtonDown += Filmsitems_MouseLeftButtonDown;
-
-                //On réinitialise genresList à chaque itération
-                string genres = "";
+                //On concatène tous les genres associés à ce film
+                dummyFilmItem.Genre = "";
                 for (int j = 0; j < ALL_FILMS.ElementAt(i).Classifications.Count(); j++)
                 {
-                    genres += ALL_FILMS.ElementAt(i).Classifications.ElementAt(j).Genre.nom + ";";
-
-                    myFilmItems.ElementAt(i).Genre = genres;
-
-                    
+                    dummyFilmItem.Genre += ALL_FILMS.ElementAt(i).Classifications.ElementAt(j).Genre.nom + ";";
                 }
+
                 //On ajoute le FilmItem à son élément parent
-                Filmsitems.Children.Add(myFilmItems.ElementAt(i));
+                Filmsitems.Children.Add(dummyFilmItem);
             }
-            
+
+            //On initialise maintenant la partie haute de la vue
+            UpdateSelectedFilm(this.SelectedFilm.code_barre);
 
         }
 
-        //public void UpdateFilms()
-        //{
-        //    this.entities = new DatabaseEntities();
-        //    this.entities.SaveChanges();
-        //}
 
         public void UpdateSelectedFilm(long? id)
         {
-            //ici, on récupère les informations de la table film
-            var query = from film in ALL_FILMS
+            //Cette méthode va gérer l'affichage de la partie haute de la vue
+            //ici, on récupère toutes les informations associées au film
+            //Afin de réinitialiser la vue du dessus.
+            //La réaffectation de SelectedFilm est nécéssaire pour le
+            //rechargement après modifications entre autres
+
+            this.SelectedFilm = (from film in ALL_FILMS
                         orderby film.Locations.Count() descending
                         where film.code_barre == id
-                        select film;
+                        select film).First();
 
 
-            this.SelectedFilm = query.First();
-
-            this.currentLocations = this.SelectedFilm.Locations;
-
-            ItemsLocations.Children.Clear();
+            //On remplace les champs du haut par les nouveaux
 
             TopTitre.Content = this.SelectedFilm.titre + "\n" + this.SelectedFilm.code_barre.ToString();
-
             TopRealisateur.Content = this.SelectedFilm.Realisateur1.nom;
-
             TopAnnee.Content = this.SelectedFilm.annee;
-
             TopDuree.Content = convert(this.SelectedFilm.duree);
-
             TopPrix.Content = this.SelectedFilm.prix + "€";
-
             TopStock.Content = this.SelectedFilm.stock_total - this.SelectedFilm.exemplaires_loues;
-
             TopPrets.Content = this.SelectedFilm.exemplaires_loues;
-
             TopCommandes.Content = this.SelectedFilm.commandes;
-
             TopDescription.Text = this.SelectedFilm.synopsis;
-
             TopImage.Source = new BitmapImage(new Uri("../Components/Assets/" + this.SelectedFilm.image, UriKind.Relative));
 
-
-            string genres = "";
+            //Ici, l'affichage des genres
+            TopGenres.Content = "";
             for (int i = 0; i < this.SelectedFilm.Classifications.Count; i++)
             {
-                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
-                {
-                    genres += this.SelectedFilm.Classifications.ElementAt(i).Genre.nom + ";";
-                }
+                TopGenres.Content += this.SelectedFilm.Classifications.ElementAt(i).Genre.nom + ";";
             }
-            TopGenres.Content = genres;
 
 
-            string voix = "";
+            //Ici, l'affichage des voix
+            TopVoix.Content = "";
             for (int i = 0; i < this.SelectedFilm.Voixes.Count; i++)
             {
-                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
-                {
-                    voix += this.SelectedFilm.Voixes.ElementAt(i).Langue.langue1 + ";";
-                }
+
+                TopVoix.Content += this.SelectedFilm.Voixes.ElementAt(i).Langue.langue1 + ";";
+                
             }
-            TopVoix.Content = voix;
 
 
-            string sous_titres = "";
+            //Ici, l'affichage des sous_titrages
+            TopSoustitres.Content = "";
             for (int i = 0; i < this.SelectedFilm.Sous_titrages.Count; i++)
-            {
-                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
-                {
-                    sous_titres += this.SelectedFilm.Sous_titrages.ElementAt(i).Langue.langue1 + ";";
-                }
+            {  
+                TopSoustitres.Content += this.SelectedFilm.Sous_titrages.ElementAt(i).Langue.langue1 + ";";
             }
-            TopSoustitres.Content = sous_titres;
 
 
-            string acteurs = "";
+            //Ici, l'affichage des acteurs
+            TopActeurs.Content = "";
             for (int i = 0; i < this.SelectedFilm.Roles.Count; i++)
             {
-                if (!this.SelectedFilm.titre.Contains("###Ajout En Cours### "))
-                {
-                    acteurs += this.SelectedFilm.Roles.ElementAt(i).Acteur.nom.ToString() + ";";
-                }
-            }
-            TopActeurs.Content = acteurs;
-
-            //On crée une liste de Location, qui va nous servir à afficher le tableau
-            var locationsItems = new List<FilmLocationItem>();
-
-            //On en instancie autant qu'il faut (ie le nombre de films dans notre BDD)
-            for (int i = 0; i < this.currentLocations.Count(); i++)
-            {
-                locationsItems.Add(new FilmLocationItem());
+                TopActeurs.Content += this.SelectedFilm.Roles.ElementAt(i).Acteur.nom.ToString() + ";"; 
             }
 
-            for (int i = 0; i < this.currentLocations.Count(); i++)
+
+            //On clear les items de locations d'un films (dans la partie haute de la vue)
+            ItemsLocations.Children.Clear();
+
+            //On re-crée des listItems appropriés au nouveau film
+
+            for (int i = 0; i < this.SelectedFilm.Locations.Count(); i++)
             {
-                locationsItems.ElementAt(i).ClientName = this.currentLocations.ElementAt(i).Client.prenom + this.currentLocations.ElementAt(i).Client.nom;
-                locationsItems.ElementAt(i).LocationStart = this.currentLocations.ElementAt(i).date_debut.ToShortDateString();
-                locationsItems.ElementAt(i).LocationEnd = this.currentLocations.ElementAt(i).date_fin.ToShortDateString();
-                if (this.currentLocations.ElementAt(i).rendu)
+                //On instancie un FilmLocationItem
+                FilmLocationItem dummyLocationItem = new FilmLocationItem();
+
+                //On le remplit
+                dummyLocationItem.ClientName = this.SelectedFilm.Locations.ElementAt(i).Client.prenom + this.SelectedFilm.Locations.ElementAt(i).Client.nom;
+                dummyLocationItem.LocationStart = this.SelectedFilm.Locations.ElementAt(i).date_debut.ToShortDateString();
+                dummyLocationItem.LocationEnd = this.SelectedFilm.Locations.ElementAt(i).date_fin.ToShortDateString();
+                if (this.SelectedFilm.Locations.ElementAt(i).rendu)
                 {
-                    locationsItems.ElementAt(i).Etat = "Rendu";
+                    dummyLocationItem.Etat = new LocationState(0);
                 }
                 else
                 {
-                    locationsItems.ElementAt(i).Etat = "Non rendu";
+                    dummyLocationItem.Etat = new LocationState(2);
 
                 }
-                ItemsLocations.Children.Add(locationsItems.ElementAt(i));
-            }
 
-        
+                //On l'ajoute au stack
+                ItemsLocations.Children.Add(dummyLocationItem);
             }
+        }
         
-
+        //Cette méthode permet de récupérer le code_barre de l'item du stack (tableau)
+        //sur lequel on a cliqué. On appelle ensuite la méthode UpdateSelectedFilm
+        //pour actualiser le haut de la vue.
         private void Filmsitems_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             FilmItem item = e.Source as FilmItem;
-            this.selectedFilmId = Int64.Parse(item.CodeBarre);
-            this.itemSelected = item;
-            UpdateSelectedFilm(this.selectedFilmId);
+            UpdateSelectedFilm(Int64.Parse(item.CodeBarre));
         }
 
 
-        public void ReloadFilmsAfterDelete()
+        //Modale de suppression
+        private void BtnDeleteFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Filmsitems.Children.Remove(itemSelected);
-          
-            ALL_FILMS.Remove(this.SelectedFilm);
-            InitFilms();
-            UpdateSelectedFilm(ALL_FILMS.First().code_barre);
+            if (ALL_FILMS.Any())
+            {
+                ModalFilmDelete modal = new ModalFilmDelete(this.SelectedFilm);
+                //on lie la vue actuelle afin de pouvoir en appeler les
+                //méthodes depuis la modale
+                modal.SetFilmView(this);
+                //On ajoute la modale à la vue
+                FilmMainContainer.Children.Add(modal);
+            }
         }
 
-        public void ReloadFilmsCopies(Film f,int?stocktot,int?prets,int?commandes)
+
+
+        //Modale de gestion des copies du film
+        private void BtnCopiesFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            int idxfilm = ALL_FILMS.IndexOf(f);
-            Film myFilm = ALL_FILMS.ElementAt(idxfilm);
-            myFilm.stock_total = (int)stocktot;
-            myFilm.commandes = (int)commandes;
-            myFilm.exemplaires_loues = (int)prets;
-            InitFilms();
+            if (ALL_FILMS.Any())
+            {
+                ModalFilmCopies modal = new ModalFilmCopies(this.SelectedFilm);
+                //on lie la vue actuelle afin de pouvoir en appeler les
+                //méthodes depuis la modale
+                modal.SetFilmView(this);
+                //On ajoute la modale à la vue
+                FilmMainContainer.Children.Add(modal);
+            }
         }
 
+        //Modale ajout film
+        private void BtnAjoutFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (ALL_FILMS.Any())
+            {
+                ModalFilmAdd modal = new ModalFilmAdd();
+                //on lie la vue actuelle afin de pouvoir en appeler les
+                //méthodes depuis la modale
+                modal.SetFilmView(this);
+                //On ajoute la modale à la vue
+                FilmMainContainer.Children.Add(modal);
+            }
+        }
+
+        //Méthode associée au bouton Actualiser
         private void BtnRefresh_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            InitFilms();
+            if (ALL_FILMS.Any())
+            {
+                InitFilms();
+            }
         }
+
+        //Non implémenté : édition film (non présent sur CDC)
+        //private void BtnEditFilm_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //  ModalFilmEdit modal = new ModalFilmEdit(this.SelectedFilm);
+        //FilmMainContainer.Children.Add(modal);
+        //}
     }
 }

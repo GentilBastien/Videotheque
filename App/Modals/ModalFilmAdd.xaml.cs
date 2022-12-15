@@ -38,9 +38,11 @@ namespace MaVideotheque.Modals
             this.mesSousTitrages = new List<Sous_titrages>();
             this.mesVoix = new List<Voix>();
             this.mesClassifications = new List<Classification>();
+            //Le film de l'on va ajouter dans FilmView.ALL_FILMS
             this.monFilm = new Film();
         }
 
+        //On lie la modale à la FilmView
         public void SetFilmView(object parent)
         {
             fv = (FilmView)parent;
@@ -60,6 +62,8 @@ namespace MaVideotheque.Modals
 
             DatabaseEntities entities = new DatabaseEntities();
             
+            //On commence par récupérer toutes les données du formulaire,
+            //Et à les parse dans les bons types
             long CodeBarre = Int64.Parse(this.InputBarcode.Text);
             string Titre = this.InputFilmname.Text;
             string Synopsis = this.InputDescription.Text;
@@ -69,29 +73,27 @@ namespace MaVideotheque.Modals
             int Prix = Int32.Parse(this.InputPrix.Text);
             string Image = this.InputPath.Text;
 
+            //On récupère entre autres la liste des genres, acteurs, voix et sous-titrages
             string[] Acteurs = InputActeurs.Text.Split(';');
-            
             string[] Genres = InputGenres.Text.Split(';');
-            
             string[] Voix = InputVoix.Text.Split(';');
-           
             string[] Sous_titres = InputSoustitres.Text.Split(';');
          
 
-
+            //si le film existe déjà
             if ((from film in FilmView.ALL_FILMS where film.code_barre == CodeBarre select film).Count() != 0)
             {
                 this.Visibility = Visibility.Collapsed;
             }
 
-
+            //Si le réalisateur entré est pré-existant dans la BDD
             if ((from film in FilmView.ALL_FILMS where film.Realisateur1.nom == Realisateur select film).Count() != 0)
             {
                 this.monRealisateur = (from realisateur in entities.Realisateurs where realisateur.nom == Realisateur select realisateur).First();
             }
-
-            else
+            else //sinon, on l'ajoute dans la BDD
             {
+                //On crée l'objet
                 this.monRealisateur = new Realisateur();
                 this.monRealisateur.id = System.Guid.NewGuid();
                 this.monRealisateur.nom = Realisateur;
@@ -111,44 +113,62 @@ namespace MaVideotheque.Modals
                 }
             }
 
+            //Dans tous les cas, on ajoute le réalisateur au film créé :
+            //On se doit d'aller jusqu'aux tables imbriquées pour satisfaire
+            //L'ensemble des requêtes faites par le logiciel
+            this.monFilm.Realisateur1 = monRealisateur;
+            this.monFilm.realisateur = monRealisateur.id;
+
+            //On passe maintenant aux acteurs
+            //Le but est de vérifier si pour chaque acteur entré
+            //s'il existe déjà en BDD. Si ce n'est pas le cas,
+            //on l'insère à la volée dans la BDD.
 
             foreach (string a in Acteurs)
             {
                 if (a != "")
                 {
-                    bool isAct = false;
+                    bool isAct = false; //On initialise un booléen
+
+                    //On instancie un nouvel acteur
                     Acteur Act = new Acteur();
+
+                    //On charge et passe en revue tous les rôles de nos entités
                     var query = from film in FilmView.ALL_FILMS select new { film.Roles };
+
                     for (int i = 0; i < query.Count(); i++)
                     {
                         for (int j = 0; j < query.ElementAt(i).Roles.Count(); j++)
                         {
                             if (query.ElementAt(i).Roles.ElementAt(j).Acteur.nom == a)
                             {
-                                isAct = true;
-                                Act = query.ElementAt(i).Roles.ElementAt(j).Acteur;
+                                isAct = true; //si le nom est présent dans la liste
+                                Act = query.ElementAt(i).Roles.ElementAt(j).Acteur; //on récupère l'objet Acteur associé
                             }
                         }
 
                     }
+
+                    //Dans tous les cas un rôle est crée
                     Role rol = new Role();
                     rol.id = System.Guid.NewGuid();
                     rol.id_film = CodeBarre;
 
                     if (isAct)
                     {
+                        //Si l'on a récupéré l'objet acteur
                         rol.id_acteur = Act.id;
-                        rol.Acteur = Act;
-                        rol.Acteur.nom = a;
+                        rol.Acteur = Act; //On l'imbrique dans notre objet rôle
                     }
                     else
                     {
-                        Act.id = System.Guid.NewGuid();
-                        Act.nom = a;
-                        rol.id_acteur = Act.id;
-                        rol.Acteur = Act;
-                        Act.Roles.Add(rol);
-                        mesActeurs.Add(Act);
+                        //Si l'acteur n'était pas dans la BDD : 
+                        Act.id = System.Guid.NewGuid(); //on lui attribue un nouvel id
+                        Act.nom = a; //On récupère son nom
+                        rol.id_acteur = Act.id; //on insère son id dans le Role
+                        rol.Acteur = Act; //on l'insère entièrement dans le Role
+                        Act.Roles.Add(rol); //on lui ajoute l'objet Role le contenant
+                        mesActeurs.Add(Act); //on l'ajoute enfin à notre liste d'acteurs
 
                         using (SqlConnection conn = new SqlConnection(MainWindow.CONNECTION_STRING))
                         {
@@ -165,12 +185,14 @@ namespace MaVideotheque.Modals
                         }
                     }
 
-                    monFilm.Roles.Add(rol);
-                    mesRoles.Add(rol);
+                    monFilm.Roles.Add(rol); //on ajoute le role créé au film crée
+                    mesRoles.Add(rol); //on l'ajoute également à la liste des roles pour une insertion future
                 }
             }
 
 
+            //La procédure est exactement la même que pour les Acteurs/Roles,
+            //mais pour les Genres/Classifications (symétrie de la BDD)
             foreach (string g in Genres)
             {
                 if (g != "")
@@ -231,6 +253,7 @@ namespace MaVideotheque.Modals
                 }
             }
 
+            //De même pour les Voix/Langues
             foreach (string v in Voix)
             {
                 if (v != "")
@@ -290,6 +313,7 @@ namespace MaVideotheque.Modals
                 }
             }
 
+            //Et pour les Sous_titrages/Langues
             foreach (string st in Sous_titres)
             {
                 if (st != "")
@@ -350,6 +374,7 @@ namespace MaVideotheque.Modals
             }
 
             
+            //Nous pouvons enfin insérer notre nouveau film dans la BDD
 
             using (SqlConnection conn = new SqlConnection(MainWindow.CONNECTION_STRING))
             {
@@ -393,6 +418,7 @@ namespace MaVideotheque.Modals
                 
             }
 
+            //On insère les rôles de la même manière
             if (mesRoles.Count > 0)
             {
                 foreach (Role role in mesRoles)
@@ -415,6 +441,7 @@ namespace MaVideotheque.Modals
 
             }
 
+            //Les voix
             if (mesVoix.Count > 0)
             {
                 foreach (Voix voix in mesVoix)
@@ -437,6 +464,7 @@ namespace MaVideotheque.Modals
 
             }
 
+            //Et les sous_titrages
             if (mesSousTitrages.Count > 0)
             {
                 foreach (Sous_titrages st in mesSousTitrages)
@@ -459,10 +487,11 @@ namespace MaVideotheque.Modals
 
             }
 
+            //On finit par insérer les données "de base" obtenues via le formulaire
+            //dans notre objet Film
             this.monFilm.code_barre = CodeBarre;
             this.monFilm.duree = Duree;
             this.monFilm.annee = Annee;
-            this.monFilm.Realisateur1 = monRealisateur;
             this.monFilm.commandes = 0;
             this.monFilm.image = Image;
             this.monFilm.prix = Prix;
@@ -471,10 +500,16 @@ namespace MaVideotheque.Modals
             this.monFilm.titre = Titre;
             this.monFilm.synopsis = Synopsis;
 
-
+            //On ajoute l'objet à notre collection
             FilmView.ALL_FILMS.Add(monFilm);
+
+            //On recharge la liste des films
             fv.InitFilms();
 
+            //On affiche le film ajouté en haut
+            fv.UpdateSelectedFilm(CodeBarre);
+
+            //on fait disparaître la modale
             this.Visibility = Visibility.Collapsed;
         }
     }

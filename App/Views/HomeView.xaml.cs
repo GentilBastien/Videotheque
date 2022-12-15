@@ -1,19 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using MaVideotheque.Components;
 
 namespace MaVideotheque.Views
@@ -41,7 +28,7 @@ namespace MaVideotheque.Views
             FilmView.ALL_FILMS = query.ToList();
         }
 
-        private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ValidateButton_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
             string[] genres = this.InputGenres.Text.Split(';');
@@ -160,7 +147,7 @@ namespace MaVideotheque.Views
             }
         }
 
-        private void CancelButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void CancelButton_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             this.InputBefore.Text = "2023";
             this.InputAfter.Text = "1895";
