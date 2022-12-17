@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("script_data_test.sql")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database.mdf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database_log.ldf")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("entitymodel.context.tt")]

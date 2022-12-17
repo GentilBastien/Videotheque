@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Collections.Generic;
 
 namespace MaVideotheque.Modals
 {
@@ -19,17 +18,16 @@ namespace MaVideotheque.Modals
         public Client SelectedClient { get; set; }
 
 
-        public long? filmId = null;
         public ModalLocationAdd(Client monClient)
         {
             InitializeComponent();
             this.DataContext = this;
 
+            //On set nos attributs
             this.SelectedClient = monClient;
-
             this.Msg = "Location de film pour " + monClient.prenom + " " + monClient.nom;
         }
-
+        //on lie la modale à la ClientView
         public void SetClientView(object parent)
         {
             this.cv = parent as ClientView;
@@ -46,20 +44,22 @@ namespace MaVideotheque.Modals
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var query = from film in FilmView.ALL_FILMS where film.code_barre == Int64.Parse(this.InputCodeBarre.Text) select film;
+            //on récupère le film concerné
+            var queryFilm = from film in FilmView.ALL_FILMS where film.code_barre == Int64.Parse(this.InputCodeBarre.Text) select film;
 
-            if (query.Any())
+            if (queryFilm.Any())
             {
                 Location MyNewLoc = new Location();
                 MyNewLoc.id_client = SelectedClient.id;
                 MyNewLoc.id_film = Int64.Parse(this.InputCodeBarre.Text);
-                MyNewLoc.Film = query.First();
+                MyNewLoc.Film = queryFilm.First();
                 MyNewLoc.id = System.Guid.NewGuid();
                 MyNewLoc.rendu = false;
                 MyNewLoc.date_debut = System.DateTime.Parse(this.InputDateDebut.Text);
                 MyNewLoc.date_fin = System.DateTime.Parse(this.InputDateFin.Text);
                 MyNewLoc.Client = SelectedClient;
 
+                //on crée une nouvelle location dans la BDD
                 using (SqlConnection conn = new SqlConnection(MainWindow.CONNECTION_STRING))
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter();
@@ -80,25 +80,36 @@ namespace MaVideotheque.Modals
                     adapter.InsertCommand.ExecuteNonQuery();
                 }
 
+                //on incrémente le nombre d'exemplaires loués du film
                 using (SqlConnection conn = new SqlConnection(MainWindow.CONNECTION_STRING))
                 {
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     SqlCommand command = new SqlCommand(
-                    "UPDATE Films SET exemplaires_loues="+ query.First().exemplaires_loues + "WHERE code_barre like '"+Int64.Parse(this.InputCodeBarre.Text)+"'", conn);
+                    "UPDATE Films SET exemplaires_loues="+ (queryFilm.First().exemplaires_loues + 1) + "WHERE code_barre like '"+Int64.Parse(this.InputCodeBarre.Text)+"'", conn);
 
                     adapter.InsertCommand = command;
                     conn.Open();
                     adapter.InsertCommand.ExecuteNonQuery();
                 }
 
+                //on ajoute l'objet location crée dans la liste des locations
                 LocationView.ALL_LOCATIONS.Add(MyNewLoc);
+
+                //on ajoute la location dans la liste des locations du client sélectionné
                 SelectedClient.Locations.Add(MyNewLoc);
-                query.First().Locations.Add(MyNewLoc);
-                query.First().exemplaires_loues++;
+
+                //on ajoute la location dans la liste des locations du film concerné
+                queryFilm.First().Locations.Add(MyNewLoc);
+
+                //on incrémente les exemplaires loués
+                queryFilm.First().exemplaires_loues++;
+
+                //on réinitialise l'affichage de la vue ClientView
                 cv.InitClients();
+                cv.UpdateSelectedClient(MyNewLoc.id_client);
 
             }
-
+            //on masque la modale
             this.Visibility = Visibility.Collapsed;
         }
     }

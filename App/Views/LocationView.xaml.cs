@@ -174,18 +174,5 @@ namespace MaVideotheque.Views
             
         }
 
-        //inutile ?
-        public void ReloadLocationAfterEdit(long CodeBarre, string DateDebut, string DateFin)
-        {
-            int index = ALL_LOCATIONS.IndexOf(this.SelectedLocation);
-            this.SelectedLocation.id_film = CodeBarre;
-            this.SelectedLocation.date_debut = System.DateTime.Parse(DateDebut);
-            this.SelectedLocation.date_fin = System.DateTime.Parse(DateFin);
-
-            ALL_LOCATIONS.RemoveAt(index);
-            ALL_LOCATIONS.Insert(index, this.SelectedLocation);
-            InitLocations();
-
-        }
     }
 }

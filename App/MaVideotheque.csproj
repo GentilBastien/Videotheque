@@ -400,6 +400,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="script_data_test.sql" />
     <Resource Include="Components\Assets\harry_potter_1.png" />
     <Resource Include="Components\Assets\harry_potter_2.png" />
     <Resource Include="Components\Assets\harry_potter_3.png" />

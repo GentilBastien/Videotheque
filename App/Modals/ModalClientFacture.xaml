@@ -15,7 +15,7 @@
                     <RowDefinition Height="58" />
                     
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0">
+                <StackPanel Grid.Row="0" Name="mainStack">
                     <Label Content="{Binding Titre}" FontSize="36" FontFamily="Calibri"/>
                     <Label Content="Historique des location" FontSize="20" FontFamily="Calibri"/>
                     <Grid Margin="50 0 0 0">

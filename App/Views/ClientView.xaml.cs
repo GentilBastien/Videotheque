@@ -118,41 +118,7 @@ namespace MaVideotheque.Views
 
         }
 
-        //inutile ?
-        public void ReloadClientsAfterDelete()
-        {
-            Client deletedClient = this.SelectedClient;
-            ALL_CLIENTS.Remove(deletedClient);
-            this.SelectedClient = ALL_CLIENTS.First();
-            this.SelectedClient.id = this.SelectedClient.id;
-            InitClients();
-        }
-
-        //inutile ?
-        public void ReloadClientsAfterAdd(Client newClient)
-        {
-            ALL_CLIENTS.Add(newClient);
-            this.SelectedClient = ALL_CLIENTS.Last();
-            this.SelectedClient.id = newClient.id;
-            InitClients();
-        }
-
-        //inutile ?
-        public void ReloadClientsAfterEdit(string Nom, string Prenom, string Tel, string Mail, string Adresse)
-        {
-            Client myChangedClient = this.SelectedClient;
-            int indexClient = ALL_CLIENTS.IndexOf(myChangedClient);
-            ALL_CLIENTS.Remove(myChangedClient);
-            myChangedClient.nom = Nom;
-            myChangedClient.prenom = Prenom;
-            myChangedClient.telephone = Tel;
-            myChangedClient.mail = Mail;
-            myChangedClient.adresse = Adresse;
-            ALL_CLIENTS.Insert(indexClient,myChangedClient);
-            InitClients();
-            
-        }
-
+        //Lorsque l'on clique sur un élément du tableau de bas de vue
         private void ClientItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ClientItem item = e.Source as ClientItem;

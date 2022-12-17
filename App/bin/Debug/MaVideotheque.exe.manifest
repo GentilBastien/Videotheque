@@ -90,14 +90,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MaVideotheque.exe" size="7723488">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MaVideotheque.exe" size="7724000">
       <assemblyIdentity name="MaVideotheque" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>3LRaL05VKyiQIxq0c/Up3Lj/LYbaYAnXWWkoQVfu3Nc=</dsig:DigestValue>
+        <dsig:DigestValue>SvHIOwHm/SewwrgYJHCNxmQc9MkUwcL/FupvMAsrxO8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -143,7 +143,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>p6MYYiHSOvQuwdr7nwai0pAlOxOt8X1PtE3Abp66LbA=</dsig:DigestValue>
+      <dsig:DigestValue>2H9RchfAlF8OvMH6KFkjgStoNuz8vsRUcbq4/lqleNU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Database_log.ldf" size="8388608" writeableType="applicationData">
@@ -152,7 +152,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>wXd78oENTJDMoMC82ZChNEB2ob++L6f/CpDc0O6zEWg=</dsig:DigestValue>
+      <dsig:DigestValue>52Lva7r34qQL0TAjyW2yJSUxDbJqlTie9ACZPYRSSAo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="EntityModel.Context.tt" size="22935">
