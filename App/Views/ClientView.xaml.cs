@@ -1,31 +1,22 @@
 ﻿using MaVideotheque.Components;
-using MaVideotheque.DatabaseDataSetTableAdapters;
 using MaVideotheque.Modals;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MaVideotheque.Views
 {
     public partial class ClientView : UserControl
     {
-        public Guid selectedClientId;
-        public Client selectedClient;
-        public ClientItem itemSelected = null;
+        //Correspond au client affiché en haut de vue.
+        //De base ce sera le premier client de la liste triée
+        //par nb total de locations, sinon le dernier client cliqué 
+
+        public Client SelectedClient;
+
+        //Notre attribut statique contenant tous les clients
         public static List<Client> ALL_CLIENTS { get; set; }
 
 
@@ -34,30 +25,35 @@ namespace MaVideotheque.Views
             InitializeComponent();
             this.DataContext = this;
 
+            //On génère nos clients d'après les entités
             var entities = new DatabaseEntities();
-
-
-            var query2 = from client in entities.Clients
+            ALL_CLIENTS = (from client in entities.Clients
                          orderby client.Locations.Count()
                          descending
-                         select client;
+                         select client).ToList();
 
-            ALL_CLIENTS = query2.ToList();
-
-            InitClients() ;
+            //On initialise notre tableau du bas
+            if (ALL_CLIENTS.Any())
+            {
+                InitClients();
+            }
+            
         }
 
         public void InitClients()
         {
-            this.selectedClient = ALL_CLIENTS.First();
-            this.selectedClientId = this.selectedClient.id;
-            
 
+            //On affecte une valeur à notre attribut SelectedClient
+            this.SelectedClient = ALL_CLIENTS.First();
+            
+            //On clear toutes les entrées du tableau
             ClientItems.Children.Clear();
 
+            //On re-remplit le tableau
             for(int i =0; i < ALL_CLIENTS.Count; i++)
             {
                 ClientItem LigneClient = new ClientItem();
+
                 LigneClient.ClientID = ALL_CLIENTS.ElementAt(i).id.ToString();
                 LigneClient.ClientNom = ALL_CLIENTS.ElementAt(i).nom;
                 LigneClient.ClientPrenom = ALL_CLIENTS.ElementAt(i).prenom;
@@ -69,112 +65,112 @@ namespace MaVideotheque.Views
                 LigneClient.ClientNbLocations = query.ToList().Count().ToString();
                 ClientItems.Children.Add(LigneClient);
             }
-            UpdateSelectedClient();
+
+            //On update l'affichage du haut
+            UpdateSelectedClient(this.SelectedClient.id);
 
         }
 
-        public void UpdateSelectedClient()
+        public void UpdateSelectedClient(Guid id)
         {
-            this.TopName.Content = selectedClient.prenom +" "+ selectedClient.nom;
-            this.TopId.Content = selectedClient.id;
-            this.TopNom.Content = selectedClient.nom;
-            this.TopPrenom.Content = selectedClient.prenom;
-            this.TopMail.Content = selectedClient.mail;
-            this.TopTel.Content = selectedClient.telephone;
-            this.TopAdresse.Content = selectedClient.adresse;
-            this.TopDateNaissance.Content = selectedClient.date_naissance.ToShortDateString();
+            //Vu que l'on va repasser ici autrement qu'à l'init,
+            //On recharge SelectedClient
+            this.SelectedClient = (from client in ALL_CLIENTS where client.id == id select client).First();
 
+            //On remplit ainsi la partie haute de la vue
+            this.TopName.Content = SelectedClient.prenom + " " + SelectedClient.nom;
+            this.TopId.Content = SelectedClient.id;
+            this.TopNom.Content = SelectedClient.nom;
+            this.TopPrenom.Content = SelectedClient.prenom;
+            this.TopMail.Content = SelectedClient.mail;
+            this.TopTel.Content = SelectedClient.telephone;
+            this.TopAdresse.Content = SelectedClient.adresse;
+            this.TopDateNaissance.Content = SelectedClient.date_naissance.ToShortDateString();
+
+            //On clear l'affichage des locations du client (ou des précédents)
             this.LocationsStack.Children.Clear();
-            for(int i=0; i < selectedClient.Locations.Count(); i++)
+
+            //On re-remplit avec les informations adaptées
+            for(int i=0; i < SelectedClient.Locations.Count(); i++)
             {
+                //On instancie un nouveau ClientLocationItem
                 ClientLocationItem itemLoc = new ClientLocationItem();
-                itemLoc.FilmId = selectedClient.Locations.ElementAt(i).Film.code_barre.ToString();
-                itemLoc.FilmName = selectedClient.Locations.ElementAt(i).Film.titre.ToString();
-                if (selectedClient.Locations.ElementAt(i).rendu)
+
+                //On le remplit
+                itemLoc.FilmId = SelectedClient.Locations.ElementAt(i).Film.code_barre.ToString();
+                itemLoc.FilmName = SelectedClient.Locations.ElementAt(i).Film.titre.ToString();
+                if (SelectedClient.Locations.ElementAt(i).rendu)
                 {
-                    itemLoc.Etat = "Rendu";
+                    itemLoc.Etat = new LocationState(0);
 
                 }
                 else
                 {
-                    itemLoc.Etat = "Non rendu";
+                    itemLoc.Etat = new LocationState(2);
 
                 }
-                itemLoc.LocationStart = selectedClient.Locations.ElementAt(i).date_debut.ToShortDateString();
-                itemLoc.LocationEnd = selectedClient.Locations.ElementAt(i).date_fin.ToShortDateString();
+                itemLoc.LocationStart = SelectedClient.Locations.ElementAt(i).date_debut.ToShortDateString();
+                itemLoc.LocationEnd = SelectedClient.Locations.ElementAt(i).date_fin.ToShortDateString();
+
+                //On l'ajoute au stack
                 LocationsStack.Children.Add(itemLoc);
             }
 
         }
-        public void ReloadClientsAfterDelete()
-        {
-            Client deletedClient = this.selectedClient;
-            ALL_CLIENTS.Remove(deletedClient);
-            this.selectedClient = ALL_CLIENTS.First();
-            this.selectedClientId = this.selectedClient.id;
-            InitClients();
-        }
 
-        public void ReloadClientsAfterAdd(Client newClient)
-        {
-            ALL_CLIENTS.Add(newClient);
-            this.selectedClient = ALL_CLIENTS.Last();
-            this.selectedClientId = newClient.id;
-            InitClients();
-        }
-
-        public void ReloadClientsAfterEdit(string Nom, string Prenom, string Tel, string Mail, string Adresse)
-        {
-            Client myChangedClient = this.selectedClient;
-            int indexClient = ALL_CLIENTS.IndexOf(myChangedClient);
-            ALL_CLIENTS.Remove(myChangedClient);
-            myChangedClient.nom = Nom;
-            myChangedClient.prenom = Prenom;
-            myChangedClient.telephone = Tel;
-            myChangedClient.mail = Mail;
-            myChangedClient.adresse = Adresse;
-            ALL_CLIENTS.Insert(indexClient,myChangedClient);
-            InitClients();
-            
-        }
-
+        //Lorsque l'on clique sur un élément du tableau de bas de vue
         private void ClientItem_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             ClientItem item = e.Source as ClientItem;
-            this.selectedClientId = Guid.Parse(item.ClientID);
-            this.selectedClient = (from client in ALL_CLIENTS where client.id == this.selectedClientId select client).First();
-            this.itemSelected = item;
-            UpdateSelectedClient();
+            UpdateSelectedClient(Guid.Parse(item.ClientID));
 
         }
 
+        //La modale de supression du client
         private void BtnDeleteClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ModalClientDelete modal = new ModalClientDelete(this.selectedClient);
-            modal.SetClientView(this);
-            ClientMainContainer.Children.Add(modal);
+            if (ALL_CLIENTS.Any())
+            {
+                ModalClientDelete modal = new ModalClientDelete(this.SelectedClient);
+                modal.SetClientView(this);
+                ClientMainContainer.Children.Add(modal);
+            }
         }
 
+        //La modale d'édition du client
         private void BtnEditClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ModalClientEdit modal = new ModalClientEdit(this.selectedClient);
-            modal.SetClientView(this);
-            ClientMainContainer.Children.Add(modal);
+            if (ALL_CLIENTS.Any())
+            {
+                ModalClientEdit modal = new ModalClientEdit(this.SelectedClient);
+                modal.SetClientView(this);
+                ClientMainContainer.Children.Add(modal);
+            }
         }
 
+        //La modale de calcul de la facture du client
         private void BtnFactureClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ModalClientFacture modal = new ModalClientFacture("ROISSY", "Pierre");
-            ClientMainContainer.Children.Add(modal);
+            if (ALL_CLIENTS.Any())
+            {
+                ModalClientFacture modal = new ModalClientFacture(SelectedClient);
+                modal.SetClientView(this);
+                ClientMainContainer.Children.Add(modal);
+            }
         }
 
+        //La modale permettant de louer un film à un client
         private void BtnLouerFilm_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            ModalLocationAdd modal = new ModalLocationAdd(selectedClient);
-            modal.SetClientView(this);
-            ClientMainContainer.Children.Add(modal);
+            if (ALL_CLIENTS.Any())
+            {
+                ModalLocationAdd modal = new ModalLocationAdd(SelectedClient);
+                modal.SetClientView(this);
+                ClientMainContainer.Children.Add(modal);
+            }
         }
 
+        //La modale permettant d'ajouter un client
         private void BtnAddClient_PreviewMouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             ModalClientAdd modal = new ModalClientAdd();
@@ -182,6 +178,12 @@ namespace MaVideotheque.Views
             ClientMainContainer.Children.Add(modal);
         }
 
-        
+        private void BtnRefresh_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (ALL_CLIENTS.Any())
+            {
+                InitClients();
+            }
+        }
     }
 }

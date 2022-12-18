@@ -18,13 +18,15 @@
 
             <!--PARTIE HAUTE CLIENTS-->
             <DockPanel Grid.Row="0">
-                <Label Name="TopName" DockPanel.Dock="Top" Content="ROISSY Pierre" FontSize="36"/>
+                <Label Name="TopName" DockPanel.Dock="Top" Content="" FontSize="36"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <comp:BasicBouton x:Name="BtnDeleteClient" Contenu="Supprimer client" PreviewMouseLeftButtonDown="BtnDeleteClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnEditClient" Contenu="Éditer client" PreviewMouseLeftButtonDown="BtnEditClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnFactureClient" Contenu="Gérer factures" PreviewMouseLeftButtonDown="BtnFactureClient_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnLouerFilm" Contenu="Louer un film" PreviewMouseLeftButtonDown="BtnLouerFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnAddClient" Contenu="Ajouter un nouveau client" PreviewMouseLeftButtonDown="BtnAddClient_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnRefresh" Contenu="Actualiser la page" PreviewMouseLeftButtonDown="BtnRefresh_PreviewMouseLeftButtonDown"/>
+
                 </StackPanel>
                 <Image Width="140" Source="../img/user.png" Margin="20,0,20,0"/>
 

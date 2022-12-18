@@ -23,9 +23,10 @@
                 <Label DockPanel.Dock="Top" Name="TopTitre" Content="Harry Potter à l'école des sorciers" FontSize="36"/>
                 <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
                     <comp:BasicBouton x:Name="BtnDeleteFilm" Contenu="Supprimer fiche" PreviewMouseLeftButtonDown="BtnDeleteFilm_PreviewMouseLeftButtonDown"/>
-                    <comp:BasicBouton x:Name="BtnEditFilm" Contenu="Éditer la fiche" PreviewMouseLeftButtonDown="BtnEditFilm_PreviewMouseLeftButtonDown"/>
+                    <!--<comp:BasicBouton x:Name="BtnEditFilm" Contenu="Éditer la fiche" PreviewMouseLeftButtonDown="BtnEditFilm_PreviewMouseLeftButtonDown"/>-->
                     <comp:BasicBouton x:Name="BtnCopiesFilm" Contenu="Gérer les copies" PreviewMouseLeftButtonDown="BtnCopiesFilm_PreviewMouseLeftButtonDown"/>
                     <comp:BasicBouton x:Name="BtnAjoutFilm" Contenu="Ajouter une nouvelle fiche film" PreviewMouseLeftButtonDown="BtnAjoutFilm_PreviewMouseLeftButtonDown"/>
+                    <comp:BasicBouton x:Name="BtnRefresh" Contenu="Actualiser la page" PreviewMouseLeftButtonDown="BtnRefresh_PreviewMouseLeftButtonDown"/>
                 </StackPanel>
                 <Image Width="200" Name="TopImage" Margin="20,0,20,0"/>
 
@@ -40,33 +41,33 @@
                         <Label Content="Acteurs principaux" FontSize="20" FontWeight="Bold"/>
                         <Label Name="TopActeurs" Content="" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Réalisateur" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopRealisateur" Content="Chris Columbus" FontSize="12" Margin="0,-10,0,0"/>
-                        <Label Content="Langues &amp; sous-titres" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopVoix" Content="Français, Anglais" FontSize="12" Margin="0,-10,0,0"/>
-                        <Label Name="TopSoustitres" Content="Français, Anglais" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopRealisateur" Content="" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Content="Voix &amp; sous-titres" FontSize="20" FontWeight="Bold"/>
+                        <Label Name="TopVoix" Content="" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopSoustitres" Content="" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Année sortie" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopAnnee" Content="2001" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopAnnee" Content="" FontSize="12" Margin="0,-10,0,0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
                         <Label Content="Durée" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopDuree" Content="129min" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopDuree" Content="" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Genre" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopGenres" Content="Aventure Action Sci-Fi" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopGenres" Content="" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="Prix location" FontSize="20" FontWeight="Bold"/>
-                        <Label Name="TopPrix" Content="10€" FontSize="12" Margin="0,-10,0,0"/>
+                        <Label Name="TopPrix" Content="" FontSize="12" Margin="0,-10,0,0"/>
                         <Label Content="État du stock" FontSize="20" FontWeight="Bold"/>
                         <StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,-10,0,0">
                                 <Label Content="En stock"/>
-                                <Label Name ="TopStock" Content="3"/>
+                                <Label Name ="TopStock" Content=""/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,-10,0,0">
                                 <Label Content="En prêt"/>
-                                <Label Name ="TopPrets" Content="1"/>
+                                <Label Name ="TopPrets" Content=""/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Margin="0,-10,0,0">
                                 <Label Content="En commande"/>
-                                <Label Name="TopCommandes" Content="0"/>
+                                <Label Name="TopCommandes" Content=""/>
                             </StackPanel>
                         </StackPanel>
                         <Label Content="Locations" FontSize="20" FontWeight="Bold"/>

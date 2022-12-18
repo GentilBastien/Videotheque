@@ -10,9 +10,11 @@ namespace MaVideotheque.Modals
 {
     public partial class ModalClientEdit : UserControl
     {
+        //va contenir le client que l'on va modifier
         public Client monClient = null;
+        //référence à la vue ayant déclanché la modale
         public ClientView cv = null;
-        public Guid selectedClientId = Guid.Empty;
+        //Les informations sur le client
         public string Nom { get; set;}
         public string Prenom { get; set; }
         public string Adresse { get; set; }
@@ -24,7 +26,9 @@ namespace MaVideotheque.Modals
             this.DataContext = this;
 
             this.monClient = client;
-            this.selectedClientId = client.id;
+
+            //On intitialise les données de la modale
+            //concernées par le data binding
             this.Nom = client.nom;
             this.Prenom = client.prenom;
             this.Mail = client.mail;
@@ -34,6 +38,7 @@ namespace MaVideotheque.Modals
             
         }
 
+        //On lie la modale à la vue qui l'a générée
         public void SetClientView(object parent)
         {
             this.cv = parent as ClientView;
@@ -50,14 +55,13 @@ namespace MaVideotheque.Modals
 
         private void ValidateButton_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            String ConnectionString = MainWindow.CONNECTION_STRING;
 
-            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            using (SqlConnection conn = new SqlConnection(MainWindow.CONNECTION_STRING))
             {
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 SqlCommand command = new SqlCommand(
                 "UPDATE Clients SET " +
-                "nom = @Nom, prenom = @Prenom, mail = @Mail, telephone = @Telephone, adresse = @Adresse WHERE id like '" + this.selectedClientId + "'", conn);
+                "nom = @Nom, prenom = @Prenom, mail = @Mail, telephone = @Telephone, adresse = @Adresse WHERE id like '" + this.monClient.id + "'", conn);
 
                 command.Parameters.AddWithValue("@Nom", InputNom.Text);
                 command.Parameters.AddWithValue("@Prenom", InputPrenom.Text);
@@ -70,8 +74,20 @@ namespace MaVideotheque.Modals
                 adapter.InsertCommand.ExecuteNonQuery();
             }
 
-            cv.ReloadClientsAfterEdit(this.InputNom.Text, InputPrenom.Text, this.InputTel.Text, this.InputMail.Text, this.InputAdresse.Text);
+            //On change les informations du client modifié
+            monClient.nom = InputNom.Text;
+            monClient.prenom = InputPrenom.Text;
+            monClient.telephone = InputTel.Text;
+            monClient.adresse = InputAdresse.Text;
+            monClient.mail = InputMail.Text;
+
+            //on réactualise la vue ClientView
+            cv.InitClients();
+            cv.UpdateSelectedClient(monClient.id);
+
+            //on fait disparaître la modale
             this.Visibility = Visibility.Collapsed;
+
         }
     }
 }
